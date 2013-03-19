@@ -1,0 +1,21 @@
+#include "InventorySystem\InventoryDialog.hpp"
+
+class Header
+{
+ gameType = COOP; 
+ minPlayers = 1;  
+ maxPlayers = 16; 
+};
+
+respawn = "BASE";
+respawnDelay = 10;
+respawnVehicleDelay = 10;
+respawnDialog = false;
+disabledAI = 0;
+ShowGPS = 1;
+showCompass	= 1;
+showWatch	= 1;
+aiKills	= 0;
+debriefing	= 0;
+loadScreen = ""; //TODO put picture
+author = "mozaRussia";

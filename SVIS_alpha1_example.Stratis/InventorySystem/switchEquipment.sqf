@@ -47,6 +47,7 @@ switch(_type) do
 	{
 		_vest_array = IIS_VEST_ARRAY;
 		//TODO save whatever gear was in previous uniform and put it in the new one
+		//TODO current main weapon ammo gets taken out of vest on vest switch
 		removeVest player;
 		_selected_vest = _vest_array select _index; 
 		player addVest (_selected_vest);

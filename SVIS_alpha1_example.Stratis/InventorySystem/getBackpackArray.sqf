@@ -4,8 +4,17 @@
  * @author sbobovyc
  * 
  */
+#include "blacklist.hpp"
+
 _cfgweapons = configFile >> "CfgVehicles";
 _item_array = [];        
+_blacklist = BACKPACK_BLACKLIST;
+
+// check whether BACKPACK_BLACKLIST was actually defined
+if(isNil {_blacklist}) then {
+	nul = ["Mission maker, you failed to supply a backpack blacklist."] call BIS_fnc_errorMSG;
+};
+
 for "_i" from 0 to (count _cfgWeapons)-1 do
 {
 //diag_log str(_i);
@@ -20,8 +29,10 @@ _cur_wep = _cfgweapons select _i;
 
 		if(_scope >= 2 && _wep_type == "Backpacks" && _picture != "" && !(_classname in _item_array)) then
 		{
-			//diag_log format["Class: %1 - Type: %2 - Scope: %3 - Pic: %4 - WEP: %5",_classname,_wep_type,_scope,_picture,_cur_wep];
-		_item_array set[count _item_array, _classname];
+			if !(_classname in _blacklist) then {
+				//diag_log format["Class: %1 - Type: %2 - Scope: %3 - Pic: %4 - WEP: %5",_classname,_wep_type,_scope,_picture,_cur_wep];
+			_item_array set[count _item_array, _classname];
+			};
 		};
 	};
 };

@@ -36,6 +36,9 @@ loadInventory.sqf
 saveInventory.sqf
 
 
+End user customization provided by:
+blacklist.hpp
+
 
 
 Quick start:

@@ -32,10 +32,15 @@ switch(_type) do
 	case "Uniform": 
 	{
 		_uniform_array = IIS_UNIFORM_ARRAY;
-		//TODO save whatever gear was in previous uniform and put it in the new one
+		//BUG Underwear does not have any inventory slots, which causes 0 vest items to be saved
+		// save inventory
+		saveInventory = compile preprocessFileLineNumbers "InventorySystem\saveInventory.sqf";
+		nul = [] call saveInventory;
 		removeUniform player;
 		_selected_uniform = _uniform_array select _index; 
 		player addUniform (_selected_uniform);
+		addToInventory = compile preprocessFileLineNumbers "InventorySystem\addToIventory.sqf";
+		[SVIS_INVENTORY select 3] call addToInventory;
 		
 		_uniform_name = getText(configFile >> "CfgWeapons" >> _selected_uniform >> "displayName");		
 		//diag_log _uniform_name;
@@ -46,12 +51,18 @@ switch(_type) do
 	case "Vest": 
 	{
 		_vest_array = IIS_VEST_ARRAY;
-		//TODO save whatever gear was in previous uniform and put it in the new one
-		//TODO current main weapon ammo gets taken out of vest on vest switch
+		//BUG Rebreather does not have any inventory slots, which causes 0 vest items to be saved
+		// save inventory
+		saveInventory = compile preprocessFileLineNumbers "InventorySystem\saveInventory.sqf";
+		nul = [] call saveInventory;
+		//diag_log (SVIS_INVENTORY select 4);
+		//diag_log (SVIS_INVENTORY select 5);
 		removeVest player;
 		_selected_vest = _vest_array select _index; 
 		player addVest (_selected_vest);
-		
+		addToInventory = compile preprocessFileLineNumbers "InventorySystem\addToIventory.sqf";
+		[SVIS_INVENTORY select 5] call addToInventory;
+
 		_vest_name = getText(configFile >> "CfgWeapons" >> _selected_vest >> "displayName");		
 		//diag_log _vest_name;
 		
@@ -62,9 +73,14 @@ switch(_type) do
 	{
 		_backpack_array = IIS_BACKPACK_ARRAY;
 		//TODO save whatever gear was in previous uniform and put it in the new one
-		removeBackpack player;
+		// save inventory
+		saveInventory = compile preprocessFileLineNumbers "InventorySystem\saveInventory.sqf";
+		nul = [] call saveInventory;
+		removeBackpack player;	//BUG player craps out backpacks if you switch too quickly
 		_selected_backpack = _backpack_array select _index; 
 		player addBackpack (_selected_backpack);
+		addToInventory = compile preprocessFileLineNumbers "InventorySystem\addToIventory.sqf";
+		[SVIS_INVENTORY select 7] call addToInventory;
 		
 		_backpack_name = getText(configFile >> "CfgVehicles" >> _selected_backpack >> "displayName");		
 		//diag_log _backpack_name;

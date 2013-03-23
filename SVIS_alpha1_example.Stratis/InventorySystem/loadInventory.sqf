@@ -4,7 +4,7 @@
   * @details
   * Uses global array SVIS_INVENTORY
   */
-  
+/* 
 addToInventory = 
 {
 	_items = _this select 0;
@@ -20,6 +20,7 @@ addToInventory =
 		};	
 	} forEach _items;		
 };
+*/
 
 waitUntil {!(isNull player)};
 waitUntil {player==player};
@@ -59,9 +60,9 @@ if( (count SVIS_INVENTORY) != 0) then
 	player addUniform _uniform;
 	player addVest _vest;
 	player addBackpack _backpack;	
-	[player, _primary_weapon, 1] call BIS_fnc_addWeapon;	//add weapon last, or mage won't be added
-	[player, _secondary_weapon, 1] call BIS_fnc_addWeapon;	//add weapon last, or mage won't be added
-	[player, _handgun, 1] call BIS_fnc_addWeapon;	//add weapon last, or mage won't be added	
+	[player, _primary_weapon, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added
+	[player, _secondary_weapon, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added
+	[player, _handgun, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added	
 	player addWeapon "Binocular"; //TODO check if this was saved
 
 	{
@@ -79,7 +80,8 @@ if( (count SVIS_INVENTORY) != 0) then
 	{
 		player addSecondaryWeaponItem _x;
 	} forEach _secondary_items;	
-	
+
+	addToInventory = compile preprocessFileLineNumbers "InventorySystem\addToIventory.sqf";
 	[_uniform_items] call addToInventory;
 	[_vest_items] call addToInventory;
 	[_backpack_items] call addToInventory;

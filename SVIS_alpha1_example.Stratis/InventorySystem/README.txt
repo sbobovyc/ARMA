@@ -47,3 +47,12 @@ A sample multiplayer mission is included to show how to use the load/save loadou
 Launch the mission and come up to the large supply crate and select SVIS. Choose a loadout and click "Save & Close". 
 Your gear is now saved and if you die you will respawn with the saved loadout. You can also pick up equipment from normal ammo boxes and 
 save your loadout at the SVIS supply crate.
+
+
+Known bugs:
+
+* if player activates SVIS while bent over, he will be bent over in the SVIS menu
+* pressing ESC in SVIS will exit the GUI but not the camera mode, trapping the player 
+* player drops backpacks on the ground if their are switched too quickly
+* underware does not have any inventory slots, so uniform gear does not get saved properly (put it in the blacklist)
+* rebreather does not have any inventory slots, so uniform gear does not get saved properly (put it in the blacklist)

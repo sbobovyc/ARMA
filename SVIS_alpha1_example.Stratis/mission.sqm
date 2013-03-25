@@ -22,7 +22,6 @@ class Mission
 		"A3_Soft_F_Offroad",
 		"A3_Modules_F",
 		"A3_Modules_F_Skirmish",
-		"A3_Soft_F_Galkin",
 		"A3_Structures_F_Ind_Cargo"
 	};
 	addOnsAuto[]=

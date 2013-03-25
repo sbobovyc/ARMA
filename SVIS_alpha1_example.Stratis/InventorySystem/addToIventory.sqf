@@ -7,7 +7,7 @@
 
 _items = _this select 0;
 {
-	diag_log format["Adding: %1", _x];
+	diag_log format["SVIS: addToInventory: %1", _x];
 	if(isClass(configFile/"CfgMagazines"/_x)) then
 	{
 		player addMagazine _x;

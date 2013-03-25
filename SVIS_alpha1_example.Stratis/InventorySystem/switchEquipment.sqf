@@ -23,7 +23,6 @@ switch(_type) do
 		_selected_headgear = _headgear_array select _index; 
 		player addHeadgear (_selected_headgear);	
 		_headgear_name = getText(configFile >> "CfgWeapons" >> _selected_headgear >> "displayName");		
-		//diag_log _headgear_name;
 		
 		// set button text
 		ctrlSetText[HEADGEAR_BUTTON, _headgear_name];				
@@ -32,7 +31,6 @@ switch(_type) do
 	case "Uniform": 
 	{
 		_uniform_array = IIS_UNIFORM_ARRAY;
-		//BUG Underwear does not have any inventory slots, which causes 0 vest items to be saved
 		// save inventory
 		saveInventory = compile preprocessFileLineNumbers "InventorySystem\saveInventory.sqf";
 		nul = [] call saveInventory;
@@ -43,7 +41,7 @@ switch(_type) do
 		[SVIS_INVENTORY select 3] call addToInventory;
 		
 		_uniform_name = getText(configFile >> "CfgWeapons" >> _selected_uniform >> "displayName");		
-		//diag_log _uniform_name;
+		diag_log format["SVIS: switchEquipment, uniform %1", _selected_uniform];
 		
 		// set button text
 		ctrlSetText[UNIFORM_BUTTON, _uniform_name];
@@ -51,12 +49,9 @@ switch(_type) do
 	case "Vest": 
 	{
 		_vest_array = IIS_VEST_ARRAY;
-		//BUG Rebreather does not have any inventory slots, which causes 0 vest items to be saved
 		// save inventory
 		saveInventory = compile preprocessFileLineNumbers "InventorySystem\saveInventory.sqf";
 		nul = [] call saveInventory;
-		//diag_log (SVIS_INVENTORY select 4);
-		//diag_log (SVIS_INVENTORY select 5);
 		removeVest player;
 		_selected_vest = _vest_array select _index; 
 		player addVest (_selected_vest);
@@ -64,7 +59,7 @@ switch(_type) do
 		[SVIS_INVENTORY select 5] call addToInventory;
 
 		_vest_name = getText(configFile >> "CfgWeapons" >> _selected_vest >> "displayName");		
-		//diag_log _vest_name;
+		diag_log format["SVIS: switchEquipment, vest %1", _selected_vest];
 		
 		// set button text
 		ctrlSetText[VEST_BUTTON, _vest_name];
@@ -72,7 +67,6 @@ switch(_type) do
 	case "Backpack": 
 	{
 		_backpack_array = IIS_BACKPACK_ARRAY;
-		//TODO save whatever gear was in previous uniform and put it in the new one
 		// save inventory
 		saveInventory = compile preprocessFileLineNumbers "InventorySystem\saveInventory.sqf";
 		nul = [] call saveInventory;
@@ -83,7 +77,6 @@ switch(_type) do
 		[SVIS_INVENTORY select 7] call addToInventory;
 		
 		_backpack_name = getText(configFile >> "CfgVehicles" >> _selected_backpack >> "displayName");		
-		//diag_log _backpack_name;
 		
 		// set button text
 		ctrlSetText[BACKPACK_BUTTON, _backpack_name];
@@ -91,22 +84,33 @@ switch(_type) do
 	case "Weapon": 
 	{
 		_weapon_array = IIS_WEAPON_ARRAY;
-		//TODO save whatever gear was in previous uniform and put it in the new one
 		//TODO check if player has binoculars, and if not don't add them
-		removeAllWeapons player;
+		//BUG some magazines still get left behind
+		_mags = getArray(configFile >> "CfgWeapons" >> primaryWeapon player >> "magazines");
+		_cnt = [player, primaryWeapon player] call BIS_fnc_invRemove;
+		diag_log format["SVIS: switchEquipment, removed weapon count %1", _cnt];
+
+		// remove weapon magazines so that inventory does not get cluttered
+		{
+			_cnt = [player, _x, 100] call BIS_fnc_invRemove;
+			diag_log format["SVIS: switchEquipment, removed mag %1, count %2", _x, _cnt];
+		} forEach _mags;
+
+		// add selected weapon and some mags
 		_selected_weapon = _weapon_array select _index; 
 		[player, _selected_weapon, 6] call BIS_fnc_addWeapon;
-		player addWeapon "Binocular";
+		// make the player select the primary weapon, as of alpha pistole gets selected
+		player selectWeapon _selected_weapon;
 		 
 		_weapon_name = getText(configFile >> "CfgWeapons" >> _selected_weapon >> "displayName");		
-		//diag_log _weapon_name;
+		diag_log format["SVIS: switchEquipment, weapon %1", _selected_weapon];
 		
 		// set button text
 		ctrlSetText[WEAPON_BUTTON, _weapon_name];
 	};			
 	default
 	{
-		diag_log "Error in equipment switch";	
-		hint "Error in equipment switch";	
+		diag_log "SVIS: Error in equipment switch";	
+		hint "SVIS: Error in equipment switch";	
 	};
 };

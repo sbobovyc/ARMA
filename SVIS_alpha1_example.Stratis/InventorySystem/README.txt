@@ -56,3 +56,4 @@ Known bugs:
 * player drops backpacks on the ground if their are switched too quickly
 * underware does not have any inventory slots, so uniform gear does not get saved properly (put it in the blacklist)
 * rebreather does not have any inventory slots, so uniform gear does not get saved properly (put it in the blacklist)
+* some magazines get left behind when player switches between weapons quickly

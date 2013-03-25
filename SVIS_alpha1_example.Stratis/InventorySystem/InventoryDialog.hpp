@@ -165,7 +165,7 @@ class InventoryDialog{
 
 	class WeaponButton : Button {
 		idc = WEAPON_BUTTON;
-		text = "Weapon Name";
+		text = "Primary Weapon Name";
 		action = "[""Weapon""] execVM ""InventorySystem\pointCamera.sqf"";";
 		y = Y_POS+1.0;
 	};

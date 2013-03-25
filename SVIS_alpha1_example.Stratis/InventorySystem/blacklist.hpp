@@ -37,5 +37,13 @@
 ]
 */
 
-#define ITEM_BLACKLIST []
 #define BACKPACK_BLACKLIST []
+#define ITEM_BLACKLIST \
+[\
+	"U_BasicBody",\
+	"U_B_Wetsuit",\
+	"U_OI_Wetsuit",\
+	"U_Rangemaster",\
+	"V_RebreatherB",\
+	"V_RebreatherIR"\
+]

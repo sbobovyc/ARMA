@@ -4,28 +4,10 @@
   * @details
   * Uses global array SVIS_INVENTORY
   */
-/* 
-addToInventory = 
-{
-	_items = _this select 0;
-	{
-		diag_log format["Adding: %1", _x];
-		if(isClass(configFile/"CfgMagazines"/_x)) then
-		{
-			player addMagazine _x;
-		} 
-		else 
-		{
-			player addItem _x;
-		};	
-	} forEach _items;		
-};
-*/
 
 waitUntil {!(isNull player)};
 waitUntil {player==player};
 
-//diag_log "loading inventory";
 
 _headgear = 	SVIS_INVENTORY select 0;
 _goggles =	 	SVIS_INVENTORY select 1;
@@ -41,8 +23,7 @@ _handgun = 		SVIS_INVENTORY select 10;
 _primary_items = 	SVIS_INVENTORY select 11;
 _secondary_items =  SVIS_INVENTORY select 12;
 
-//diag_log SVIS_INVENTORY;
-diag_log "Loading inventory";
+diag_log format["SVIS: loadInventory, %1", SVIS_INVENTORY];
 
 // handle the case that the user did not save an inventory
 if( (count SVIS_INVENTORY) != 0) then

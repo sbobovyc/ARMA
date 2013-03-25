@@ -59,7 +59,7 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 
 		case "Init":
 		{
-			diag_log "In init";			
+			diag_log "SVIS: pointCamera, in init";			
 			LOCK_CAM;
 			NVG_CHECK;
 			// show some nice effects
@@ -69,6 +69,7 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 			SVIS_CAM = "camera" createVehicleLocal [_pos select 0, (_pos select 1)+2.3, (_pos select 2)+1];			 
 			[_pos] call defaultGlobalCam;
 			UNLOCK_CAM;
+			diag_log "SVIS: pointCamera, done init";			
 			
 		};	
 		case "Default":
@@ -81,7 +82,7 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 		{
 			LOCK_CAM;
 			NVG_CHECK;
-			diag_log "In headgear";
+			diag_log "SVIS: pointCamera, in headgear";
 			SVIS_CAM camSetPos [(_pos select 0) - 0.5, (_pos select 1)+1.0, (_pos select 2)+2.0];
 			[ZOOM_TIME_SHORT, _pos] call commitGlobalCamFace;	
 			waitUntil {camCommitted SVIS_CAM;};	
@@ -92,14 +93,14 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 			
 			[_pos] call defaultGlobalCam;		
 			waitUntil {camCommitted SVIS_CAM;};					
-			diag_log "Done headgear";	
+			diag_log "SVIS: pointCamera, done headgear";	
 			UNLOCK_CAM;				
 		};	
 		case "Uniform":
 		{
 			LOCK_CAM;
 			NVG_CHECK;			
-			diag_log "In uniform";
+			diag_log "SVIS: pointCamera, in uniform";
 			SVIS_CAM camSetPos [(_pos select 0) - 0.5, (_pos select 1)+1.2, (_pos select 2)+1.5];
 			[ZOOM_TIME_SHORT, _pos] call commitGlobalCamBody;	
 			waitUntil {camCommitted SVIS_CAM;};	
@@ -110,14 +111,14 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 			
 			[_pos] call defaultGlobalCam;		
 			waitUntil {camCommitted SVIS_CAM;};				
-			diag_log "Done uniform";
+			diag_log "SVIS: pointCamera, done uniform";
 			UNLOCK_CAM;			
 		};
 		case "Vest":
 		{
 			LOCK_CAM;
 			NVG_CHECK;			
-			diag_log "In uniform";
+			diag_log "SVIS: pointCamera, in uniform";
 			SVIS_CAM camSetPos [(_pos select 0) - 0.5, (_pos select 1)+1.2, (_pos select 2)+1.5];
 			[ZOOM_TIME_SHORT, _pos] call commitGlobalCamBody;	
 			waitUntil {camCommitted SVIS_CAM;};	
@@ -128,31 +129,31 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 			
 			[_pos] call defaultGlobalCam;		
 			waitUntil {camCommitted SVIS_CAM;};				
-			diag_log "Done uniform";
+			diag_log "SVIS: pointCamera, done uniform";
 			UNLOCK_CAM;			
 		};		
 		case "Backpack":
 		{
 			LOCK_CAM;
 			NVG_CHECK;			
-			diag_log "In backpack";
+			diag_log "SVIS: pointCamera, in backpack";
 			SVIS_CAM camSetPos [(_pos select 0) - 0.5, (_pos select 1)-1.0, (_pos select 2)+2.0];
 			[ZOOM_TIME_LONG, _pos] call commitGlobalCamFace;	
 			waitUntil {camCommitted SVIS_CAM;};	
 				
-			diag_log "Done backpack";	
+			diag_log "SVIS: pointCamera, done backpack";	
 			UNLOCK_CAM;				
 		};		
 		case "Weapon":
 		{
 			LOCK_CAM;
 			NVG_CHECK;			
-			diag_log "In weapon";
+			diag_log "SVIS: pointCamera, in weapon";
 			SVIS_CAM camSetPos [(_pos select 0) + 0.5, (_pos select 1)+1.0, (_pos select 2)+1.5];
 			[ZOOM_TIME_LONG, _pos] call commitGlobalCamBody;	
 			waitUntil {camCommitted SVIS_CAM;};	
 				
-			diag_log "Done weapon";	
+			diag_log "SVIS: pointCamera, done weapon";	
 			UNLOCK_CAM;				
 		};				
 		case "Destroy":

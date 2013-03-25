@@ -54,8 +54,17 @@ sliderSetPosition [BACKPACK_SLIDER, 0];
 
 sliderSetRange [WEAPON_SLIDER, 0, (count IIS_WEAPON_ARRAY) - 1]; 
 sliderSetSpeed [WEAPON_SLIDER, 1.0, 1.0];
-sliderSetPosition [WEAPON_SLIDER, 0];	
-		
+
+// init slider positions
+//TODO this gui handling should be put into a function so that this and switchEquipment can share it
+_primary_weapon = primaryWeapon player;
+_pos = IIS_WEAPON_ARRAY find _primary_weapon;
+if(_pos != -1) then { 
+	sliderSetPosition [WEAPON_SLIDER, _pos];
+	_weapon_name = getText(configFile >> "CfgWeapons" >> _primary_weapon >> "displayName");
+	ctrlSetText[WEAPON_BUTTON, _weapon_name];
+};
+
 waitUntil { !dialog }; // hit ESC to close it 
 
 

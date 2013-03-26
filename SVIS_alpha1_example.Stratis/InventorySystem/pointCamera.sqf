@@ -4,7 +4,7 @@
   * @param view_option "Headgear", "Uniform"
   * @details
   * Uses global SVIS_CAM and SVIS_MUTEX.
-  * SVIS_MUTEX = false;
+  * SVIS_MUTEX = false; // initialize mutex
   * nul = [] execVM "InventorySystem\pointCamera.sqf";
   */
   
@@ -86,13 +86,14 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 			SVIS_CAM camSetPos [(_pos select 0) - 0.5, (_pos select 1)+1.0, (_pos select 2)+2.0];
 			[ZOOM_TIME_SHORT, _pos] call commitGlobalCamFace;	
 			waitUntil {camCommitted SVIS_CAM;};	
-
+			/*
 			SVIS_CAM camSetPos [(_pos select 0) + 1.5, (_pos select 1)+1.0, (_pos select 2)+2.0];
 			[ZOOM_TIME_LONG, _pos] call commitGlobalCamFace;		
 			waitUntil {camCommitted SVIS_CAM;};		
 			
 			[_pos] call defaultGlobalCam;		
 			waitUntil {camCommitted SVIS_CAM;};					
+			*/
 			diag_log "SVIS: pointCamera, done headgear";	
 			UNLOCK_CAM;				
 		};	
@@ -100,15 +101,16 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 		{
 			LOCK_CAM;
 			NVG_CHECK;			
+			/*
 			diag_log "SVIS: pointCamera, in uniform";
-			SVIS_CAM camSetPos [(_pos select 0) - 0.5, (_pos select 1)+1.2, (_pos select 2)+1.5];
+			SVIS_CAM camSetPos [(_pos select 0) - 0.3, (_pos select 1)+1.2, (_pos select 2)+1.5];
 			[ZOOM_TIME_SHORT, _pos] call commitGlobalCamBody;	
 			waitUntil {camCommitted SVIS_CAM;};	
 
 			SVIS_CAM camSetPos [(_pos select 0) + 1.5, (_pos select 1)+1.2, (_pos select 2)+1.5];
 			[ZOOM_TIME_LONG, _pos] call commitGlobalCamBody;		
 			waitUntil {camCommitted SVIS_CAM;};		
-			
+			*/
 			[_pos] call defaultGlobalCam;		
 			waitUntil {camCommitted SVIS_CAM;};				
 			diag_log "SVIS: pointCamera, done uniform";
@@ -119,16 +121,18 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 			LOCK_CAM;
 			NVG_CHECK;			
 			diag_log "SVIS: pointCamera, in uniform";
-			SVIS_CAM camSetPos [(_pos select 0) - 0.5, (_pos select 1)+1.2, (_pos select 2)+1.5];
+			SVIS_CAM camSetPos [(_pos select 0) - 0.3, (_pos select 1)+1.2, (_pos select 2)+1.5];
 			[ZOOM_TIME_SHORT, _pos] call commitGlobalCamBody;	
 			waitUntil {camCommitted SVIS_CAM;};	
-
+			
+			/*
 			SVIS_CAM camSetPos [(_pos select 0) + 1.5, (_pos select 1)+1.2, (_pos select 2)+1.5];
 			[ZOOM_TIME_LONG, _pos] call commitGlobalCamBody;		
 			waitUntil {camCommitted SVIS_CAM;};		
 			
 			[_pos] call defaultGlobalCam;		
 			waitUntil {camCommitted SVIS_CAM;};				
+			*/
 			diag_log "SVIS: pointCamera, done uniform";
 			UNLOCK_CAM;			
 		};		

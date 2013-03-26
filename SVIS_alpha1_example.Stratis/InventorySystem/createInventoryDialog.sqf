@@ -4,10 +4,23 @@
   * @details
   * This must be called like this:
   * nul = [] execVM "createInventoryDialog.sqf";
-  * Global variable "IIS_CAM", "IIS_MUTEX" is used.
+  * Global variable "SVIS_CAM", "SVIS_MUTEX" is used.
   */
 #include "InventoryItems.hpp"  
 #include "InventoryDialogDefs.hpp"
+
+// compile functions
+getItemArray = compile preprocessFileLineNumbers "InventorySystem\getItemArray.sqf";	
+getBackpackArray = compile preprocessFileLineNumbers "InventorySystem\getBackpackArray.sqf";	
+getWeaponArray = compile preprocessFileLineNumbers "InventorySystem\getWeaponArray.sqf";
+setGUI = compile preprocessFileLineNumbers "InventorySystem\setGUI.sqf";
+
+// initialize global data arrays
+SVIS_HEADGEAR_ARRAY = [HEADGEAR] call getItemArray;
+SVIS_UNIFORM_ARRAY = [UNIFORM] call getItemArray;
+SVIS_VEST_ARRAY = [VEST] call getItemArray;
+SVIS_BACKPACK_ARRAY = call getBackpackArray;
+SVIS_WEAPON_ARRAY = call getWeaponArray;
 
 
 // put player in a specific stance
@@ -15,7 +28,20 @@
 //player switchMove	"AidlPercMstpSnonWnonDnon_Player"; // good for uniform, vest, headgear
 //player switchMove "AidlPercMstpSnonWnonDnon_Player_0S";
 //player switchMove "AidlPercMstpSrasWrflDnon_G01_player"; // good for showing off rifle
-player switchMove "AidlPercMstpSlowWrflDnon_G01"; //TODO normal idle standing, but is wrong when player does not have a rifle
+if( (primaryWeapon player) != "" ) then {
+	player switchMove "AidlPercMstpSlowWrflDnon_G01"; //TODO normal idle standing, but is wrong when player does not have a rifle
+} else {
+
+	if( (handgunWeapon player) != "") then {
+		player switchMove "AidlPercMstpSlowWpstDnon_G01"; // good for uniform, vest, headgear
+	};
+
+	if( (secondaryWeapon player) != "") then {
+
+	};
+
+};
+
 _pos = getPos player;
 SVIS_MUTEX = false; //TODO move mutex creation to pointCamera
 nul = [] execVM "InventorySystem\pointCamera.sqf";
@@ -23,58 +49,32 @@ nul = [] execVM "InventorySystem\pointCamera.sqf";
 // an easy way to solve the problem of the player not facing the camera
 player setDir 0;
 
+SVIS_EQP_MUTEX = false;
+
 _ok = createDialog "InventoryDialog"; 
 if !(_ok) then {hint "Dialog couldn't be opened!"};
 
-// set slider ranges
-getItemArray = compile preprocessFileLineNumbers "InventorySystem\getItemArray.sqf";	
-getBackpackArray = compile preprocessFileLineNumbers "InventorySystem\getBackpackArray.sqf";	
-getWeaponArray = compile preprocessFileLineNumbers "InventorySystem\getWeaponArray.sqf";
-IIS_HEADGEAR_ARRAY = [HEADGEAR] call getItemArray;
-IIS_UNIFORM_ARRAY = [UNIFORM] call getItemArray;
-IIS_VEST_ARRAY = [VEST] call getItemArray;
-IIS_BACKPACK_ARRAY = call getBackpackArray;
-IIS_WEAPON_ARRAY = call getWeaponArray;
+// initialize dialog gui
+["Init"] call setGUI;
+["SetHeadgear", true] call setGUI;
+["SetUniform", true] call setGUI;
+["SetVest", true] call setGUI;
+["SetBackpack", true] call setGUI;
+["SetPrimaryWeapon", true] call setGUI;
 
-sliderSetRange [HEADGEAR_SLIDER, 0, (count IIS_HEADGEAR_ARRAY) - 1]; 
-sliderSetSpeed [HEADGEAR_SLIDER, 1.0, 1.0];
-sliderSetPosition [HEADGEAR_SLIDER, 0];
-
-sliderSetRange [UNIFORM_SLIDER, 0, (count IIS_UNIFORM_ARRAY) - 1]; 
-sliderSetSpeed [UNIFORM_SLIDER, 1.0, 1.0];
-sliderSetPosition [UNIFORM_SLIDER, 0];
-
-sliderSetRange [VEST_SLIDER, 0, (count IIS_VEST_ARRAY) - 1]; 
-sliderSetSpeed [VEST_SLIDER, 1.0, 1.0];
-sliderSetPosition [VEST_SLIDER, 0];	
-
-sliderSetRange [BACKPACK_SLIDER, 0, (count IIS_BACKPACK_ARRAY) - 1]; 
-sliderSetSpeed [BACKPACK_SLIDER, 1.0, 1.0];
-sliderSetPosition [BACKPACK_SLIDER, 0];	
-
-sliderSetRange [WEAPON_SLIDER, 0, (count IIS_WEAPON_ARRAY) - 1]; 
-sliderSetSpeed [WEAPON_SLIDER, 1.0, 1.0];
-
-// init slider positions
-//TODO this gui handling should be put into a function so that this and switchEquipment can share it
-_primary_weapon = primaryWeapon player;
-_pos = IIS_WEAPON_ARRAY find _primary_weapon;
-if(_pos != -1) then { 
-	sliderSetPosition [WEAPON_SLIDER, _pos];
-	_weapon_name = getText(configFile >> "CfgWeapons" >> _primary_weapon >> "displayName");
-	ctrlSetText[WEAPON_BUTTON, _weapon_name];
-};
-
-waitUntil { !dialog }; // hit ESC to close it 
+waitUntil { !dialog }; //BUG if user is switching gear and presses ESC, there is a change gear will be removed but not added
 
 
 // garbage collect
-IIS_HEADGEAR_ARRAY = nil;
-IIS_BACKPACK_ARRAY = nil;
-IIS_WEAPON_ARRAY = nil;
+SVIS_HEADGEAR_ARRAY = nil;
+SVIS_UNIFORM_ARRAY = nil;
+SVIS_VEST_ARRAY = nil;
+SVIS_BACKPACK_ARRAY = nil;
+SVIS_WEAPON_ARRAY = nil;
+SVIS_EQP_MUTEX = nil;
 
-//TODO fixes camera not being destroyed when player presses ESC. Better solution is to add a keydown event handler
-if !(isNull IIS_CAM) then {
+//TODO Better solution is to add a keydown event handler
+if !(isNull SVIS_CAM) then {
 	nul = ["Destroy"] execVM "InventorySystem\pointCamera.sqf";		
 };
 

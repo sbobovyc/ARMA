@@ -42,7 +42,7 @@
 [\
 	"U_BasicBody",\
 	"U_B_Wetsuit",\
-	"U_OI_Wetsuit",\
+	"U_O_Wetsuit",\
 	"U_Rangemaster",\
 	"V_RebreatherB",\
 	"V_RebreatherIR"\

@@ -29,11 +29,11 @@ SVIS_WEAPON_ARRAY = call getWeaponArray;
 //player switchMove "AidlPercMstpSnonWnonDnon_Player_0S";
 //player switchMove "AidlPercMstpSrasWrflDnon_G01_player"; // good for showing off rifle
 if( (primaryWeapon player) != "" ) then {
-	player switchMove "AidlPercMstpSlowWrflDnon_G01"; //TODO normal idle standing, but is wrong when player does not have a rifle
+	player switchMove "AidlPercMstpSlowWrflDnon_AI"; //TODO normal idle standing, but is wrong when player does not have a rifle
 } else {
 
 	if( (handgunWeapon player) != "") then {
-		player switchMove "AidlPercMstpSlowWpstDnon_G01"; // good for uniform, vest, headgear
+		player switchMove "AidlPercMstpSlowWpstDnon_AI"; // good for uniform, vest, headgear
 	};
 
 	if( (secondaryWeapon player) != "") then {

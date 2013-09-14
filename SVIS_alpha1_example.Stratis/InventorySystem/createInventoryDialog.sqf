@@ -29,11 +29,11 @@ SVIS_WEAPON_ARRAY = call getWeaponArray;
 //player switchMove "AidlPercMstpSnonWnonDnon_Player_0S";
 //player switchMove "AidlPercMstpSrasWrflDnon_G01_player"; // good for showing off rifle
 if( (primaryWeapon player) != "" ) then {
-	player switchMove "AidlPercMstpSlowWrflDnon_AI"; //TODO normal idle standing, but is wrong when player does not have a rifle
+	player switchMove "AidlPercMstpSlowWrflDnon_G01"; //TODO normal idle standing, but is wrong when player does not have a rifle
 } else {
 
 	if( (handgunWeapon player) != "") then {
-		player switchMove "AidlPercMstpSlowWpstDnon_AI"; // good for uniform, vest, headgear
+		player switchMove "AidlPercMstpSlowWpstDnon_G01"; // good for uniform, vest, headgear
 	};
 
 	if( (secondaryWeapon player) != "") then {
@@ -43,7 +43,6 @@ if( (primaryWeapon player) != "" ) then {
 };
 
 _pos = getPos player;
-SVIS_MUTEX = false; //TODO move mutex creation to pointCamera
 nul = [] execVM "InventorySystem\pointCamera.sqf";
 
 // an easy way to solve the problem of the player not facing the camera
@@ -71,10 +70,13 @@ SVIS_UNIFORM_ARRAY = nil;
 SVIS_VEST_ARRAY = nil;
 SVIS_BACKPACK_ARRAY = nil;
 SVIS_WEAPON_ARRAY = nil;
-SVIS_EQP_MUTEX = nil;
 
 //TODO Better solution is to add a keydown event handler
-if !(isNull SVIS_CAM) then {
+//if !(isNull SVIS_CAM) then {
+//	nul = ["Destroy"] execVM "InventorySystem\pointCamera.sqf";		
+//};
+
+if !(isnil("SVIS_CAM")) then {
 	nul = ["Destroy"] execVM "InventorySystem\pointCamera.sqf";		
 };
 

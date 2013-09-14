@@ -51,6 +51,10 @@ if(count _this > 0) then
 	_view_option = _this select 0;
 };
 
+if(isNil("SVIS_MUTEX")) then {
+	SVIS_MUTEX = false; 
+};
+
 if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 	_pos = getPos player;
 		

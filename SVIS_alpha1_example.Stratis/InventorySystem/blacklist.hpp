@@ -8,6 +8,7 @@
 
 // This is an empty weapons blacklist
 #define WEAPON_BLACKLIST []
+	
 
 // This blacklists all Khaybar weapons
 /*

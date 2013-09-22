@@ -3,6 +3,7 @@
   * @author sbobovyc
   * @details
   * Uses global array SVIS_INVENTORY
+  * TODO: put assigned items in a single array
   */
 
 waitUntil {!(isNull player)};
@@ -23,10 +24,19 @@ _handgun = 		SVIS_INVENTORY select 10;
 _primary_items = 	SVIS_INVENTORY select 11;
 _secondary_items = 	SVIS_INVENTORY select 12;
 _nvg =			SVIS_INVENTORY select 13;
+_range_finder		= SVIS_INVENTORY select 14;
+_binocular			= SVIS_INVENTORY select 15;
+_map				=	SVIS_INVENTORY select 16;
+_compass				=	SVIS_INVENTORY select 17;
+_watch					=	SVIS_INVENTORY select 18;
+_radio					=	SVIS_INVENTORY select 19;
+_gps					=	SVIS_INVENTORY select 20;
 
 diag_log format["SVIS: loadInventory, %1", SVIS_INVENTORY];
 diag_log format["SVIS: loadInventory, %1", assignedItems player];
 diag_log format["SVIS: loadInventory, are NVG in inventory? %1", _nvg];
+diag_log format["SVIS: loadInventory, is Rangefinder in inventory? %1", _range_finder];
+diag_log format["SVIS: loadInventory, is Binocular in inventory? %1", _binocular];
 
 // handle the case that the user did not save an inventory
 if( (count SVIS_INVENTORY) != 0) then
@@ -47,24 +57,20 @@ if( (count SVIS_INVENTORY) != 0) then
 	[player, _primary_weapon, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added
 	[player, _secondary_weapon, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added
 	[player, _handgun, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added	
-	player addWeapon "Binocular"; //TODO check if this was saved
+	
+	if(_range_finder) then {
+		player removeWeapon "Binocular";
+		player addWeapon "Rangefinder";
+	};
+	
+	if(_binocular) then {
+		player removeWeapon "Rangefinder";
+		player addWeapon "Binocular";
+	};	
 		
 	if(_nvg) then {
 		player assignItem "NVGoggles";
 	} else {
-	/*
-		if(side player == west) then {
-			player unassignItem "NVGoggles";	
-			player removeItem "NVGoggles";
-			diag_log format["SVIS: loadInventory, removing nvg"];
-		} else if(side player == east) then {
-			player unassignItem "NVGoggles_OPFOR";	
-			player removeItem "NVGoggles_OPFOR";		
-		} else then {
-			player unassignItem "NVGoggles_INDEP";	
-			player removeItem "NVGoggles_INDEP";		
-		};
-		*/
 		switch(side player) do {
 			case(west): {
 				player unassignItem "NVGoggles";	
@@ -84,9 +90,37 @@ if( (count SVIS_INVENTORY) != 0) then
 		
 		};
 	};
+		
+	if(_map) then {
+		player assignItem "ItemMap";	
+	} else {
+		player unassignItem "ItemMap";	
+	};
+
+	if(_compass) then {
+		player assignItem "ItemCompass";	
+	} else {
+		player unassignItem "ItemCompass";	
+	};	
 	
+	if(_watch) then {
+		player assignItem "ItemWatch";	
+	} else {
+		player unassignItem "ItemWatch";	
+	};	
+	
+	if(_radio) then {
+		player assignItem "ItemRadio";	
+	} else {
+		player unassignItem "ItemRadio";	
+	};		
 
-
+	if(_gps) then {
+		player assignItem "ItemGPS";	
+	} else {
+		player unassignItem "ItemGPS";	
+	};			
+	
 	{
 		player removePrimaryWeaponItem _x;
 	} forEach (primaryWeaponItems player);

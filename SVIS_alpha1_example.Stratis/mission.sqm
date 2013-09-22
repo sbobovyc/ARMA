@@ -36,7 +36,7 @@ class Mission
 	class Intel
 	{
 		briefingName="SVIS example";
-		overviewText="SVIS demonstration mission (1.0)";
+		overviewText="SVIS demonstration mission (1.1)";
 		startWeather=0.29999998;
 		startWind=0.099999994;
 		startWaves=0.099999994;
@@ -356,7 +356,7 @@ class Mission
 			vehicle="B_supplyCrate_F";
 			leader=1;
 			skill=0.60000002;
-			init="this addAction [""SVIS"", ""InventorySystem\createInventoryDialog.sqf""]; this addAction [""Save gear"", ""InventorySystem\saveInventory.sqf""]";
+			init="this addAction [""SVIS"", ""InventorySystem\createInventoryDialog.sqf""]; this addAction [""Save gear"", ""InventorySystem\saveInventory.sqf""]; this addAction [""Load gear"", ""InventorySystem\loadInventory.sqf""]";
 		};
 		class Item4
 		{
@@ -400,7 +400,7 @@ class Mission
 			vehicle="Box_East_Ammo_F";
 			leader=1;
 			skill=0.60000002;
-			init="this addAction [""SVIS"", ""InventorySystem\createInventoryDialog.sqf""]; this addAction [""Save gear"", ""InventorySystem\saveInventory.sqf""]";
+			init="this addAction [""SVIS"", ""InventorySystem\createInventoryDialog.sqf""]; this addAction [""Save gear"", ""InventorySystem\saveInventory.sqf""]; this addAction [""Load gear"", ""InventorySystem\loadInventory.sqf""]";
 		};
 		class Item8
 		{
@@ -444,7 +444,7 @@ class Mission
 			vehicle="Box_IND_Ammo_F";
 			leader=1;
 			skill=0.60000002;
-			init="this addAction [""SVIS"", ""InventorySystem\createInventoryDialog.sqf""]; this addAction [""Save gear"", ""InventorySystem\saveInventory.sqf""]";
+			init="this addAction [""SVIS"", ""InventorySystem\createInventoryDialog.sqf""]; this addAction [""Save gear"", ""InventorySystem\saveInventory.sqf""]; this addAction [""Load gear"", ""InventorySystem\loadInventory.sqf""]";
 		};
 	};
 	class Markers

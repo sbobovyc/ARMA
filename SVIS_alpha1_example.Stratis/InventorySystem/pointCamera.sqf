@@ -22,6 +22,7 @@ commitGlobalCamFace =
 	_pos = _this select 1;
 	SVIS_CAM camSetTarget [_pos select 0, _pos select 1, (_pos select 2)+1.3];
 	SVIS_CAM cameraEffect ["internal", "BACK"];
+	SVIS_CAM camSetFocus [1, 0];
 	SVIS_CAM camCommit _speed;	
 	
 };
@@ -32,6 +33,7 @@ commitGlobalCamBody =
 	_pos = _this select 1;
 	SVIS_CAM camSetTarget [_pos select 0, _pos select 1, (_pos select 2)+1.0];
 	SVIS_CAM cameraEffect ["internal", "BACK"];
+	SVIS_CAM camSetFocus [1, 0];
 	SVIS_CAM camCommit _speed;	
 	
 };
@@ -70,7 +72,7 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 			showCinemaBorder false;
 			cutText ["", "BLACK IN"];
 			//SVIS_CAM = "camera" camCreate [_pos select 0, (_pos select 1)+2.3, (_pos select 2)+1];
-			SVIS_CAM = "camera" createVehicleLocal [_pos select 0, (_pos select 1)+2.3, (_pos select 2)+1];			 
+			SVIS_CAM = "camera" createVehicleLocal [_pos select 0, (_pos select 1)+2.3, (_pos select 2)+1];					
 			[_pos] call defaultGlobalCam;
 			UNLOCK_CAM;
 			diag_log "SVIS: pointCamera, done init";			

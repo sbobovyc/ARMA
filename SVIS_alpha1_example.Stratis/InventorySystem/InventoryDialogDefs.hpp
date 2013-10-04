@@ -13,5 +13,7 @@
 #define BACKPACK_BUTTON 108
 #define WEAPON_SLIDER	109
 #define WEAPON_BUTTON	110
+#define SECONDARY_WEAPON_BUTTON	111
+#define SECONDARY_WEAPON_SLIDER	112
 
 #define TITLE "Stan's Visual Inventory System"

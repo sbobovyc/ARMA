@@ -13,6 +13,7 @@
 #define SET_SV		"SetVest"
 #define SET_SB		"SetBackpack"
 #define SET_SPW		"SetPrimaryWeapon"
+#define SET_SSW		"SetSecondaryWeapon"
 
 
 
@@ -113,5 +114,16 @@ switch(_gui_action) do
 			ctrlSetText[WEAPON_BUTTON, _weapon_name];
 		};
 	};
-
+	case SET_SSW:
+	{
+		_secondary_weapon = secondaryWeapon player;
+		if(_secondary_weapon != "") then {
+			_pos = SVIS_SECONDARY_WEAPON_ARRAY find _secondary_weapon;
+			if(_pos != -1 && _set_slider) then {
+				sliderSetPosition [SECONDARY_WEAPON_SLIDER, _pos];
+			};	
+			_weapon_name = getText(configFile >> "CfgWeapons" >> _secondary_weapon >> "displayName");
+			ctrlSetText[SECONDARY_WEAPON_BUTTON, _weapon_name];
+		};
+	};
 };

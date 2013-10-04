@@ -13,6 +13,7 @@
 getItemArray = compile preprocessFileLineNumbers "InventorySystem\getItemArray.sqf";	
 getBackpackArray = compile preprocessFileLineNumbers "InventorySystem\getBackpackArray.sqf";	
 getWeaponArray = compile preprocessFileLineNumbers "InventorySystem\getWeaponArray.sqf";
+getSecondaryWeaponArray = compile preprocessFileLineNumbers "InventorySystem\getSecondaryWeaponArray.sqf";
 setGUI = compile preprocessFileLineNumbers "InventorySystem\setGUI.sqf";
 
 // initialize global data arrays
@@ -21,7 +22,7 @@ SVIS_UNIFORM_ARRAY = [UNIFORM] call getItemArray;
 SVIS_VEST_ARRAY = [VEST] call getItemArray;
 SVIS_BACKPACK_ARRAY = call getBackpackArray;
 SVIS_WEAPON_ARRAY = call getWeaponArray;
-
+SVIS_SECONDARY_WEAPON_ARRAY = call getSecondaryWeaponArray;
 
 // put player in a specific stance
 //player switchMove "aidlpercmstpsraswrfldnon_idlesteady02n";
@@ -60,6 +61,7 @@ if !(_ok) then {hint "Dialog couldn't be opened!"};
 ["SetVest", true] call setGUI;
 ["SetBackpack", true] call setGUI;
 ["SetPrimaryWeapon", true] call setGUI;
+["SetSecondaryWeapon", true] call setGUI;
 
 waitUntil { !dialog }; //BUG if user is switching gear and presses ESC, there is a change gear will be removed but not added
 
@@ -70,6 +72,7 @@ SVIS_UNIFORM_ARRAY = nil;
 SVIS_VEST_ARRAY = nil;
 SVIS_BACKPACK_ARRAY = nil;
 SVIS_WEAPON_ARRAY = nil;
+SVIS_SECONDARY_WEAPON_Array = nil;
 
 //TODO Better solution is to add a keydown event handler
 //if !(isNull SVIS_CAM) then {

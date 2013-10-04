@@ -28,7 +28,9 @@ class InventoryDialog{
 			BackpackButton,
 			BackpackSlider,			
 			WeaponButton,
-			WeaponSlider,			
+			WeaponSlider,		
+			SecondaryWeaponButton,
+			SecondaryWeaponSlider,
 			CloseButton};  // controls
 
 	class Common {
@@ -68,7 +70,7 @@ class InventoryDialog{
 		x = X_POS;
 		y = Y_POS+0.1;
 		w = 0.3;
-		h = 1.2;	
+		h = 1.4;	
 	};
 
 	class Button : Common {
@@ -176,10 +178,23 @@ class InventoryDialog{
 		y = Y_POS+1.1;
 	};
 
+	class SecondaryWeaponButton : Button {
+		idc = SECONDARY_WEAPON_BUTTON;
+		text = "Secondary Weapon Name";
+		action = "[""Backpack""] execVM ""InventorySystem\pointCamera.sqf"";";
+		y = Y_POS+1.2;
+	};
+	
+	class SecondaryWeaponSlider : HorizSlider {
+		idc = SECONDARY_WEAPON_SLIDER;
+		onSliderPosChanged = "nul = [""SecondaryWeapon"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
+		y = Y_POS+1.3;
+	};
+	
 	class CloseButton : Button {
 		text = "Save & Close";
 		action = "[""Destroy""] execVM ""InventorySystem\pointCamera.sqf""; closeDialog 0";
-		y = Y_POS+1.2;
+		y = Y_POS+1.4;
 	};
 };
 

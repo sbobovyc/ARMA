@@ -7,7 +7,9 @@
   */
 
 // This is an empty weapons blacklist
-#define WEAPON_BLACKLIST []
+#define WEAPON_BLACKLIST [\
+	"MineDetector" \
+]
 	
 
 // This blacklists all Khaybar weapons

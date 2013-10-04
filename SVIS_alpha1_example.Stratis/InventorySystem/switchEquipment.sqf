@@ -82,7 +82,6 @@ switch(_type) do
 	case "Weapon": 
 	{
 		_weapon_array = SVIS_WEAPON_ARRAY;
-		//TODO check if player has binoculars, and if not don't add them
 		//BUG some magazines still get left behind
 		_mags = getArray(configFile >> "CfgWeapons" >> primaryWeapon player >> "magazines");
 		_wpn_cnt = [player, primaryWeapon player] call BIS_fnc_invRemove;
@@ -107,7 +106,25 @@ switch(_type) do
 		["SetPrimaryWeapon"] call setGUI;
 		 
 		diag_log format["SVIS: switchEquipment, weapon %1", _selected_weapon];
-	};			
+	};		
+	case "SecondaryWeapon":	
+	{
+		_weapon_array = SVIS_SECONDARY_WEAPON_ARRAY;
+		_mags = getArray(configFile >> "CfgWeapons" >> secondaryWeapon player >> "magazines");
+		_wpn_cnt = [player, secondaryWeapon player] call BIS_fnc_invRemove;	
+		diag_log format["SVIS: switchEquipment, removed weapon count %1", _wpn_cnt];	
+		
+		// remove weapon magazines so that inventory does not get cluttered
+		{
+			_cnt = [player, _x, 100] call BIS_fnc_invRemove;
+			diag_log format["SVIS: switchEquipment, removed mag %1, count %2", _x, _cnt];
+		} forEach _mags;		
+		// add selected weapon and some mags
+		_selected_weapon = _weapon_array select _index; 
+		[player, _selected_weapon, 2] call BIS_fnc_addWeapon;		
+		["SetSecondaryWeapon"] call setGUI;
+		diag_log format["SVIS: switchEquipment, weapon %1", _selected_weapon];
+	};
 	default
 	{
 		diag_log "SVIS: Error in equipment switch";	

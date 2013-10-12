@@ -46,8 +46,10 @@ if( (primaryWeapon player) != "" ) then {
 _pos = getPos player;
 nul = [] execVM "InventorySystem\pointCamera.sqf";
 
-// an easy way to solve the problem of the player not facing the camera
-player setDir 0;
+// turn the player away from the inventory crate
+_dir = getDir player;
+player setDir 180+_dir;
+//player setDir 0;
 
 SVIS_EQP_MUTEX = false;
 

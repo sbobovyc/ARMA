@@ -15,6 +15,19 @@
 #define UNLOCK_CAM SVIS_MUTEX = false
 #define NVG_CHECK if(daytime >= 21.0 || daytime <= 4.0) then {camUseNVG true;} else {camUseNVG false;}
 
+/**
+ * This function calculates the relative x,y offset from a rotation on the xy plane relative to the player's facing.
+*/
+calcCamPositon =
+{
+	_xpos = _this select 0;
+	_ypos = _this select 1;
+	_dir = 360 - (getDir player);
+	_xprime = (_xpos * cos _dir) - (_ypos * sin _dir);
+	_yprime = (_xpos * sin _dir) + (_ypos * cos _dir);
+	//diag_log format["SVIS: pointCamera, calcCamPosition x: %1, y: %2, x': %3, y':%4", _xpos, _ypos, _xprime, _yprime];			
+	[_xprime, _yprime]
+};
 
 commitGlobalCamFace =
 {
@@ -41,8 +54,11 @@ commitGlobalCamBody =
 defaultGlobalCam =
 {
 	_pos = _this select 0;
-	//TODO camera does not point in correct direction unless player faces north
-	SVIS_CAM camSetPos [_pos select 0, (_pos select 1)+2.3, (_pos select 2)+1];
+	_newpos = [0,2.3] call calcCamPositon;
+	_xprime = _newpos select 0;
+	_yprime = _newpos select 1;	
+	SVIS_CAM camSetPos [(_pos select 0) + _xprime, (_pos select 1) + _yprime, (_pos select 2)+1];
+	
 	[ZOOM_TIME_SHORT, _pos] call commitGlobalCamBody;		
 };
 
@@ -71,8 +87,10 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 			// show some nice effects
 			showCinemaBorder false;
 			cutText ["", "BLACK IN"];
-			//SVIS_CAM = "camera" camCreate [_pos select 0, (_pos select 1)+2.3, (_pos select 2)+1];
-			SVIS_CAM = "camera" createVehicleLocal [_pos select 0, (_pos select 1)+2.3, (_pos select 2)+1];					
+			_newpos = [0,2.3] call calcCamPositon;
+			_xprime = _newpos select 0;
+			_yprime = _newpos select 1;
+			SVIS_CAM = "camera" createVehicleLocal [(_pos select 0) + _xprime, (_pos select 1) + _yprime, (_pos select 2)+1];					
 			[_pos] call defaultGlobalCam;
 			UNLOCK_CAM;
 			diag_log "SVIS: pointCamera, done init";			
@@ -89,7 +107,10 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 			LOCK_CAM;
 			NVG_CHECK;
 			diag_log "SVIS: pointCamera, in headgear";
-			SVIS_CAM camSetPos [(_pos select 0) - 0.5, (_pos select 1)+1.0, (_pos select 2)+2.0];
+			_newpos = [-0.5, 1.0] call calcCamPositon;
+			_xprime = _newpos select 0;
+			_yprime = _newpos select 1;				
+			SVIS_CAM camSetPos [(_pos select 0) + _xprime, (_pos select 1) + _yprime, (_pos select 2)+2.0];
 			[ZOOM_TIME_SHORT, _pos] call commitGlobalCamFace;	
 			waitUntil {camCommitted SVIS_CAM;};	
 			/*
@@ -127,7 +148,10 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 			LOCK_CAM;
 			NVG_CHECK;			
 			diag_log "SVIS: pointCamera, in uniform";
-			SVIS_CAM camSetPos [(_pos select 0) - 0.3, (_pos select 1)+1.2, (_pos select 2)+1.5];
+			_newpos = [-0.3, 1.2] call calcCamPositon;
+			_xprime = _newpos select 0;
+			_yprime = _newpos select 1;					
+			SVIS_CAM camSetPos [(_pos select 0) + _xprime, (_pos select 1) + _yprime, (_pos select 2)+1.5];
 			[ZOOM_TIME_SHORT, _pos] call commitGlobalCamBody;	
 			waitUntil {camCommitted SVIS_CAM;};	
 			
@@ -147,7 +171,10 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 			LOCK_CAM;
 			NVG_CHECK;			
 			diag_log "SVIS: pointCamera, in backpack";
-			SVIS_CAM camSetPos [(_pos select 0) - 0.5, (_pos select 1)-1.0, (_pos select 2)+2.0];
+			_newpos = [-0.5, -1.0] call calcCamPositon;
+			_xprime = _newpos select 0;
+			_yprime = _newpos select 1;	
+			SVIS_CAM camSetPos [(_pos select 0) + _xprime, (_pos select 1) + _yprime, (_pos select 2)+2.0];			
 			[ZOOM_TIME_LONG, _pos] call commitGlobalCamFace;	
 			waitUntil {camCommitted SVIS_CAM;};	
 				
@@ -159,7 +186,10 @@ if(!SVIS_MUTEX || _view_option == "Init" || _view_option == "Destroy") then {
 			LOCK_CAM;
 			NVG_CHECK;			
 			diag_log "SVIS: pointCamera, in weapon";
-			SVIS_CAM camSetPos [(_pos select 0) + 0.5, (_pos select 1)+1.0, (_pos select 2)+1.5];
+			_newpos = [0.5, 1.0] call calcCamPositon;
+			_xprime = _newpos select 0;
+			_yprime = _newpos select 1;					
+			SVIS_CAM camSetPos [(_pos select 0) + _xprime, (_pos select 1) + _yprime, (_pos select 2)+1.5];
 			[ZOOM_TIME_LONG, _pos] call commitGlobalCamBody;	
 			waitUntil {camCommitted SVIS_CAM;};	
 				

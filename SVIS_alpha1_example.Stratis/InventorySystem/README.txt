@@ -51,7 +51,7 @@ save your loadout at the SVIS supply crate.
 
 Known bugs:
 
-* if player activates SVIS while bent over, he will be bent over in the SVIS menu
+* if player activates SVIS while bent over, he will be bent over in the SVIS menu (FIXED)
 * pressing ESC in SVIS will exit the GUI but not the camera mode, trapping the player (I think this was fixed)
 * player drops backpacks on the ground if their are switched too quickly (I think this was fixed after alpha)
 * underware does not have any inventory slots, so uniform gear does not get saved properly (put it in the blacklist)

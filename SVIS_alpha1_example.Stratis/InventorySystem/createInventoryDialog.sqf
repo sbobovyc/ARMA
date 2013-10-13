@@ -57,13 +57,20 @@ _ok = createDialog "InventoryDialog";
 if !(_ok) then {hint "Dialog couldn't be opened!"};
 
 // initialize dialog gui
-["Init"] call setGUI;
-["SetHeadgear", true] call setGUI;
-["SetUniform", true] call setGUI;
-["SetVest", true] call setGUI;
-["SetBackpack", true] call setGUI;
-["SetPrimaryWeapon", true] call setGUI;
-["SetSecondaryWeapon", true] call setGUI;
+//TODO move all gui init to gui's onLoad
+[0,"Init"] call setGUI;
+[0,"SetHeadgear", true] call setGUI;
+[0,"SetUniform", true] call setGUI;
+[0,"SetVest", true] call setGUI;
+[0,"SetBackpack", true] call setGUI;
+[0,"SetPrimaryWeapon", true] call setGUI;
+[0,"SetSecondaryWeapon", true] call setGUI;
+
+//TODO move this into its own nice function
+{lbAdd[10002,_x]} forEach UniformItems player;
+{lbAdd[10002,_x]} forEach vestItems player;
+{lbAdd[10002,_x]} forEach BackpackItems player;
+
 
 waitUntil { !dialog }; //BUG if user is switching gear and presses ESC, there is a change gear will be removed but not added
 

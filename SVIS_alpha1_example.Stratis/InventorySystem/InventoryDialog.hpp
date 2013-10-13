@@ -18,6 +18,7 @@ class InventoryDialog{
 	enableSimulation = true;      // don't freeze the game
 	controlsBackground[] = { Background };    
 	objects[] = { };               // no objects needed
+	onLoad = "((_this select 0) displayCtrl 200) progressSetPosition load player; diag_log 'InventoryDialog loaded'";
 	controls[] = { TitleLabel, 
 			HeadgearButton, 
 			HeadgearSlider, 
@@ -31,7 +32,7 @@ class InventoryDialog{
 			WeaponSlider,		
 			SecondaryWeaponButton,
 			SecondaryWeaponSlider,
-			CloseButton};  // controls
+			CloseButton, TotalLoad};  // controls	
 
 	class Common {
 		x = X_POS + 0.05;
@@ -70,7 +71,7 @@ class InventoryDialog{
 		x = X_POS;
 		y = Y_POS+0.1;
 		w = 0.3;
-		h = 1.4;	
+		h = 1.6;	
 	};
 
 	class Button : Common {
@@ -112,7 +113,42 @@ class InventoryDialog{
 		onSliderPosChanged = "hint format[""%1"",_this];";
 
 	};
+	
+	class RscListBox { 
+	access = 0; type = 5; style = 0; w = 0.4; h = 0.4; font = FONT_GAME; 
+	sizeEx = 0.04; rowHeight = 0; colorText[] = {1,1,1,1}; colorScrollbar[] = {1,1,1,1}; colorSelect[] = {0,0,0,1}; colorSelect2[] = {1,0.5,0,1}; 
+	colorSelectBackground[] = {0.6,0.6,0.6,1}; colorSelectBackground2[] = {0.2,0.2,0.2,1}; colorBackground[] = {0,0,0,1}; 
+	maxHistoryDelay = 1.0; soundSelect[] = {"",0.1,1}; period = 1; autoScrollSpeed = -1; autoScrollDelay = 5; autoScrollRewind = 0; 
+	arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)"; arrowFull = "#(argb,8,8,3)color(1,1,1,1)"; shadow = 0; 
+	colorDisabled[] = {1,1,1,0.3};
+	class ScrollBar { color[] = {1,1,1,0.6}; colorActive[] = {1,1,1,1}; colorDisabled[] = {1,1,1,0.3}; 
+	thumb = "#(argb,8,8,3)color(1,1,1,1)"; arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)"; arrowFull = "#(argb,8,8,3)color(1,1,1,1)"; border = "#(argb,8,8,3)color(1,1,1,1)"; shadow = 0; }; };	
 
+	class ExampleListBox : RscListBox {
+		idc = 10002;
+		y = 0;
+		x = 1.3;
+		h = 1.3;
+	};
+	
+	class RscProgress { 
+		type = 8; 
+		style = 0; 
+		colorFrame[] = {0,0,0,1}; 
+		colorBar[] = {1,1,1,1}; 
+		texture = "#(argb,8,8,3)color(1,1,1,1)"; 
+		w = 0.2; 
+		h = 0.03; 
+	};
+	
+	class TotalLoad : RscProgress {
+		idc = TOTAL_LOAD;
+		x = X_POS + 0.05;
+		y = 1.3;
+		w = 0.2;
+		tooltip = "Total load";
+	};
+	
 	class HeadgearButton : Button {
 		idc = HEADGEAR_BUTTON;
 		text = "Headgear Name";
@@ -122,7 +158,7 @@ class InventoryDialog{
 
 	class HeadgearSlider : HorizSlider {
 		idc = HEADGEAR_SLIDER;
-		onSliderPosChanged = "nul = [""Headgear"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
+		onSliderPosChanged = "nul = [_this select 0,""Headgear"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
 		y = Y_POS+0.3;
 	};
 
@@ -135,7 +171,7 @@ class InventoryDialog{
 
 	class UniformSlider : HorizSlider {
 		idc = UNIFORM_SLIDER;
-		onSliderPosChanged = "nul = [""Uniform"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
+		onSliderPosChanged = "nul = [_this select 0,""Uniform"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
 		y = Y_POS+0.5;
 	};
 
@@ -148,7 +184,7 @@ class InventoryDialog{
 
 	class VestSlider : HorizSlider {
 		idc = VEST_SLIDER;
-		onSliderPosChanged = "nul = [""Vest"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
+		onSliderPosChanged = "nul = [_this select 0,""Vest"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
 		y = Y_POS+0.7;
 	};
 
@@ -161,7 +197,7 @@ class InventoryDialog{
 
 	class BackpackSlider : HorizSlider {
 		idc = BACKPACK_SLIDER;
-		onSliderPosChanged = "nul = [""Backpack"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
+		onSliderPosChanged = "nul = [_this select 0,""Backpack"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
 		y = Y_POS+0.9;
 	};
 
@@ -174,7 +210,7 @@ class InventoryDialog{
 
 	class WeaponSlider : HorizSlider {
 		idc = WEAPON_SLIDER;
-		onSliderPosChanged = "nul = [""Weapon"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
+		onSliderPosChanged = "nul = [_this select 0,""Weapon"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
 		y = Y_POS+1.1;
 	};
 
@@ -187,7 +223,7 @@ class InventoryDialog{
 	
 	class SecondaryWeaponSlider : HorizSlider {
 		idc = SECONDARY_WEAPON_SLIDER;
-		onSliderPosChanged = "nul = [""SecondaryWeapon"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
+		onSliderPosChanged = "nul = [_this select 0,""SecondaryWeapon"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
 		y = Y_POS+1.3;
 	};
 	

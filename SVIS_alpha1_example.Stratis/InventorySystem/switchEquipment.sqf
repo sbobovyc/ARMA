@@ -11,8 +11,10 @@
 #define LOCK_EQP SVIS_EQP_MUTEX = true
 #define UNLOCK_EQP SVIS_EQP_MUTEX = false
 
-_type = _this select 0;
-_index = _this select 1;
+disableSerialization;
+_display = ctrlParent (_this select 0);
+_type = _this select 1;
+_index = _this select 2;
 
 getItemArray = compile preprocessFileLineNumbers "InventorySystem\getItemArray.sqf";
 addToInventory = compile preprocessFileLineNumbers "InventorySystem\addToIventory.sqf";
@@ -29,7 +31,7 @@ switch(_type) do
 		_selected_headgear = _headgear_array select _index; 
 		player addHeadgear (_selected_headgear);	
 		// update gui
-		["SetHeadgear"] call setGUI;
+		[_display, "SetHeadgear"] call setGUI;
 
 		diag_log format["SVIS: switchEquipment, headgear %1", _selected_headgear];
 		
@@ -45,7 +47,7 @@ switch(_type) do
 		player addUniform (_selected_uniform);
 		[SVIS_INVENTORY select 3] call addToInventory;
 		// update gui
-		["SetUniform"] call setGUI;
+		[_display, "SetUniform"] call setGUI;
 
 		diag_log format["SVIS: switchEquipment, uniform %1", _selected_uniform];
 	};
@@ -60,7 +62,7 @@ switch(_type) do
 		player addVest (_selected_vest);
 		[SVIS_INVENTORY select 5] call addToInventory;
 		// update gui
-		["SetVest"] call setGUI;
+		[_display, "SetVest"] call setGUI;
 
 		diag_log format["SVIS: switchEquipment, vest %1", _selected_vest];
 	};	
@@ -75,7 +77,7 @@ switch(_type) do
 		player addBackpack (_selected_backpack);
 		[SVIS_INVENTORY select 7] call addToInventory;
 		// update gui
-		["SetBackpack"] call setGUI;
+		[_display, "SetBackpack"] call setGUI;
 
 		diag_log format["SVIS: switchEquipment, backpack %1", _selected_backpack];
 	};	
@@ -103,7 +105,7 @@ switch(_type) do
 			player switchMove "AidlPercMstpSlowWrflDnon_G01";
 		};
 		// update gui
-		["SetPrimaryWeapon"] call setGUI;
+		[_display, "SetPrimaryWeapon"] call setGUI;
 		 
 		diag_log format["SVIS: switchEquipment, weapon %1", _selected_weapon];
 	};		
@@ -122,7 +124,7 @@ switch(_type) do
 		// add selected weapon and some mags
 		_selected_weapon = _weapon_array select _index; 
 		[player, _selected_weapon, 2] call BIS_fnc_addWeapon;		
-		["SetSecondaryWeapon"] call setGUI;
+		[_display, "SetSecondaryWeapon"] call setGUI;
 		diag_log format["SVIS: switchEquipment, weapon %1", _selected_weapon];
 	};
 	default

@@ -15,19 +15,25 @@
 #define SET_SPW		"SetPrimaryWeapon"
 #define SET_SSW		"SetSecondaryWeapon"
 
-
-
+_display = 0;
 _gui_action = "Init";
 
 if(count _this > 0) then
 {
-	_gui_action = _this select 0;
+	_display = _this select 0;
+	_gui_action = _this select 1;
 };
 
 _set_slider = false;
-if(count _this > 1) then 
+if(count _this > 2) then 
 {
-	_set_slider = _this select 1;
+	_set_slider = _this select 2;
+};
+
+// set the total load progress bar if display is a valid display object
+if(typeName _display == "DISPLAY")  then
+{
+	(_display displayCtrl TOTAL_LOAD) progressSetPosition load player;
 };
 
 switch(_gui_action) do

@@ -17,5 +17,6 @@
 #define SECONDARY_WEAPON_SLIDER	112
 
 #define TOTAL_LOAD 200
+#define MULTIPURPOSE_LISTBOX 201
 
 #define TITLE "Stan's Visual Inventory System"

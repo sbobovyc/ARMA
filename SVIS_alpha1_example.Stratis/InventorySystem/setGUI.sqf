@@ -2,7 +2,8 @@
  * @file setGUI.sqf
  * @author sbobovyc
  * @details
- * Each slider and button text setting is sperated for performance.
+ * Each slider and button text setting is separated for performance.
+ * The display has to be passed in so that progress bars can be updated dynamically.
  */
 #include "InventoryItems.hpp"  
 #include "InventoryDialogDefs.hpp"

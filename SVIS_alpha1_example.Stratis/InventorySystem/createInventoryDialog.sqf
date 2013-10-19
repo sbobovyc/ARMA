@@ -16,6 +16,7 @@ getWeaponArray = compile preprocessFileLineNumbers "InventorySystem\getWeaponArr
 getSecondaryWeaponArray = compile preprocessFileLineNumbers "InventorySystem\getSecondaryWeaponArray.sqf";
 setGUI = compile preprocessFileLineNumbers "InventorySystem\setGUI.sqf";
 
+
 // initialize global data arrays
 SVIS_HEADGEAR_ARRAY = [HEADGEAR] call getItemArray;
 SVIS_UNIFORM_ARRAY = [UNIFORM] call getItemArray;
@@ -43,13 +44,11 @@ if( (primaryWeapon player) != "" ) then {
 
 };
 
-_pos = getPos player;
-nul = [] execVM "InventorySystem\pointCamera.sqf";
-
 // turn the player away from the inventory crate
 _dir = getDir player;
 player setDir 180+_dir;
 //player setDir 0;
+nul = [] execVM "InventorySystem\pointCamera.sqf";
 
 SVIS_EQP_MUTEX = false;
 
@@ -66,10 +65,6 @@ if !(_ok) then {hint "Dialog couldn't be opened!"};
 [0,"SetPrimaryWeapon", true] call setGUI;
 [0,"SetSecondaryWeapon", true] call setGUI;
 
-//TODO move this into its own nice function
-{lbAdd[10002,_x]} forEach UniformItems player;
-{lbAdd[10002,_x]} forEach vestItems player;
-{lbAdd[10002,_x]} forEach BackpackItems player;
 
 
 waitUntil { !dialog }; //BUG if user is switching gear and presses ESC, there is a change gear will be removed but not added

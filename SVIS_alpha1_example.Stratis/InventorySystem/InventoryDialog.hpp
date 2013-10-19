@@ -6,8 +6,8 @@
 
 #include "gui.hpp"
 #include "InventoryDialogDefs.hpp"
-#define X_POS 1.0
-#define Y_POS -0.2
+#define X_POS 0.9
+#define Y_POS -0.5
 
 //TODO
 // Add checkboxes for items like NVG
@@ -32,7 +32,7 @@ class InventoryDialog{
 			WeaponSlider,		
 			SecondaryWeaponButton,
 			SecondaryWeaponSlider,
-			CloseButton, TotalLoad};  // controls	
+			CloseButton, MultipurposeListBox, AddButton, RemoveButton, TotalLoad};  // controls	
 
 	class Common {
 		x = X_POS + 0.05;
@@ -55,7 +55,7 @@ class InventoryDialog{
 
 		x = X_POS;
 		y = Y_POS+0.1;
-		w = 0.3;
+		w = 0.8;
 	};
 
 	class Background {
@@ -70,7 +70,7 @@ class InventoryDialog{
 		colorText[] = COLOR_TRANSPARENT;
 		x = X_POS;
 		y = Y_POS+0.1;
-		w = 0.3;
+		w = 0.8;
 		h = 1.6;	
 	};
 
@@ -111,28 +111,49 @@ class InventoryDialog{
 		coloractive[] = { 1, 0, 0, 0.5 };
 		// This is an ctrlEventHandler to show you some response if you move the sliderpointer.
 		onSliderPosChanged = "hint format[""%1"",_this];";
-
 	};
 	
 	class RscListBox { 
-	access = 0; type = 5; style = 0; w = 0.4; h = 0.4; font = FONT_GAME; 
-	sizeEx = 0.04; rowHeight = 0; colorText[] = {1,1,1,1}; colorScrollbar[] = {1,1,1,1}; colorSelect[] = {0,0,0,1}; colorSelect2[] = {1,0.5,0,1}; 
-	colorSelectBackground[] = {0.6,0.6,0.6,1}; colorSelectBackground2[] = {0.2,0.2,0.2,1}; colorBackground[] = {0,0,0,1}; 
-	maxHistoryDelay = 1.0; soundSelect[] = {"",0.1,1}; period = 1; autoScrollSpeed = -1; autoScrollDelay = 5; autoScrollRewind = 0; 
-	arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)"; arrowFull = "#(argb,8,8,3)color(1,1,1,1)"; shadow = 0; 
-	colorDisabled[] = {1,1,1,0.3};
-	class ScrollBar { color[] = {1,1,1,0.6}; colorActive[] = {1,1,1,1}; colorDisabled[] = {1,1,1,0.3}; 
-	thumb = "#(argb,8,8,3)color(1,1,1,1)"; arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)"; arrowFull = "#(argb,8,8,3)color(1,1,1,1)"; border = "#(argb,8,8,3)color(1,1,1,1)"; shadow = 0; }; };	
-
-	class ExampleListBox : RscListBox {
-		idc = 10002;
-		y = 0;
-		x = 1.3;
-		h = 1.3;
-	};
+		access = 0; 
+		type = 5; 
+		style = 0; 
+		w = 0.4; 
+		h = 0.4; 
+		font = FONT_GAME; 
+		sizeEx = 0.04; 
+		rowHeight = 0; 
+		colorText[] = {1,1,1,1}; 
+		colorScrollbar[] = {1,1,1,1}; 
+		colorSelect[] = {0,0,0,1}; 
+		colorSelect2[] = {1,0.5,0,1}; 
+		colorSelectBackground[] = {0.6,0.6,0.6,1}; 
+		colorSelectBackground2[] = {0.2,0.2,0.2,1}; 
+		colorBackground[] = {0,0,0,1}; 
+		maxHistoryDelay = 1.0; 
+		soundSelect[] = {"",0.1,1}; 
+		period = 1; 
+		autoScrollSpeed = -1; 
+		autoScrollDelay = 5; 
+		autoScrollRewind = 0; 
+		arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)"; 
+		arrowFull = "#(argb,8,8,3)color(1,1,1,1)"; 
+		shadow = 0; 
+		colorDisabled[] = {1,1,1,0.3};
+		
+		class ScrollBar { 
+			color[] = {1,1,1,0.6}; 
+			colorActive[] = {1,1,1,1}; 
+			colorDisabled[] = {1,1,1,0.3}; 
+			thumb = "#(argb,8,8,3)color(1,1,1,1)"; 
+			arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)"; 
+			arrowFull = "#(argb,8,8,3)color(1,1,1,1)"; 
+			border = "#(argb,8,8,3)color(1,1,1,1)"; 
+			shadow = 0; 
+		}; 
+	};	
 	
 	class RscProgress { 
-		type = 8; 
+		type = CT_PROGRESS; 
 		style = 0; 
 		colorFrame[] = {0,0,0,1}; 
 		colorBar[] = {1,1,1,1}; 
@@ -140,15 +161,7 @@ class InventoryDialog{
 		w = 0.2; 
 		h = 0.03; 
 	};
-	
-	class TotalLoad : RscProgress {
-		idc = TOTAL_LOAD;
-		x = X_POS + 0.05;
-		y = 1.3;
-		w = 0.2;
-		tooltip = "Total load";
-	};
-	
+		
 	class HeadgearButton : Button {
 		idc = HEADGEAR_BUTTON;
 		text = "Headgear Name";
@@ -165,33 +178,33 @@ class InventoryDialog{
 	class UniformButton : Button {
 		idc = UNIFORM_BUTTON;
 		text = "Uniform Name";
-		action = "[""Uniform""] execVM ""InventorySystem\pointCamera.sqf"";";
+		action = "[""Uniform""] execVM ""InventorySystem\pointCamera.sqf""; [""Uniform""] execVM ""InventorySystem\setListGUI.sqf"";";
 		y = Y_POS+0.4;
 	};
 
 	class UniformSlider : HorizSlider {
 		idc = UNIFORM_SLIDER;
-		onSliderPosChanged = "nul = [_this select 0,""Uniform"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
+		onSliderPosChanged = "nul = [_this select 0,""Uniform"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf""; [""Uniform""] execVM ""InventorySystem\setListGUI.sqf"";";
 		y = Y_POS+0.5;
 	};
 
 	class VestButton : Button {
 		idc = VEST_BUTTON;
 		text = "Vest Name";
-		action = "[""Vest""] execVM ""InventorySystem\pointCamera.sqf"";";
+		action = "[""Vest""] execVM ""InventorySystem\pointCamera.sqf""; [""Vest""] execVM ""InventorySystem\setListGUI.sqf"";";
 		y = Y_POS+0.6;
 	};
 
 	class VestSlider : HorizSlider {
 		idc = VEST_SLIDER;
-		onSliderPosChanged = "nul = [_this select 0,""Vest"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
+		onSliderPosChanged = "nul = [_this select 0,""Vest"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf""; [""Vest""] execVM ""InventorySystem\setListGUI.sqf"";";
 		y = Y_POS+0.7;
 	};
 
 	class BackpackButton : Button {
 		idc = BACKPACK_BUTTON;
 		text = "Backpack Name";
-		action = "[""Backpack""] execVM ""InventorySystem\pointCamera.sqf"";";
+		action = "[""Backpack""] execVM ""InventorySystem\pointCamera.sqf""; [""Backpack""] execVM ""InventorySystem\setListGUI.sqf""; [""Backpack""] execVM ""InventorySystem\setListGUI.sqf"";";
 		y = Y_POS+0.8;
 	};
 
@@ -204,13 +217,13 @@ class InventoryDialog{
 	class WeaponButton : Button {
 		idc = WEAPON_BUTTON;
 		text = "Primary Weapon Name";
-		action = "[""Weapon""] execVM ""InventorySystem\pointCamera.sqf"";";
+		action = "[""Weapon""] execVM ""InventorySystem\pointCamera.sqf""; [""Weapon""] execVM ""InventorySystem\setListGUI.sqf"";";
 		y = Y_POS+1.0;
 	};
 
 	class WeaponSlider : HorizSlider {
 		idc = WEAPON_SLIDER;
-		onSliderPosChanged = "nul = [_this select 0,""Weapon"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf"";";
+		onSliderPosChanged = "nul = [_this select 0,""Weapon"", _this select 1] execVM ""InventorySystem\switchEquipment.sqf""; [""Weapon""] execVM ""InventorySystem\setListGUI.sqf"";";
 		y = Y_POS+1.1;
 	};
 
@@ -232,5 +245,41 @@ class InventoryDialog{
 		action = "[""Destroy""] execVM ""InventorySystem\pointCamera.sqf""; closeDialog 0";
 		y = Y_POS+1.4;
 	};
+	
+	class TotalLoad : RscProgress {
+		idc = TOTAL_LOAD;
+		x = X_POS+0.05;
+		y = Y_POS+1.5;
+		w = 0.2;
+		tooltip = "Total load";
+	};	
+	
+	class MultipurposeListBox : RscListBox {
+		idc = MULTIPURPOSE_LISTBOX;
+		y = Y_POS + 0.2;
+		x = X_POS + 0.3;
+		h = 1.3;
+		w = 0.5;
+	};
+	
+	class AddButton : Button {
+		text = "+";
+		action = "diag_log ""Add selected item""";
+		x = X_POS + 0.3;
+		y = Y_POS+1.5;
+		w = 0.1;
+		style = ST_CENTER;
+		tooltip = "Add selected item";
+	};	
+	
+	class RemoveButton : Button {
+		text = "-";
+		action = "diag_log ""Remove selected item""";
+		x = X_POS + 0.4;
+		y = Y_POS+1.5;
+		w = 0.1;
+		style = ST_CENTER;
+		tooltip = "Remove selected item";
+	};		
 };
 

@@ -6,6 +6,7 @@
   * Uses global SVIS_CAM and SVIS_MUTEX.
   * SVIS_MUTEX = false; // initialize mutex
   * nul = [] execVM "InventorySystem\pointCamera.sqf";
+  * TODO: can optimize by checking if current camera position is equal to desired position and skip running camera movement logic.
   */
   
 #define ZOOM_TIME_NOW 0

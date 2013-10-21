@@ -47,7 +47,6 @@ if( (primaryWeapon player) != "" ) then {
 // turn the player away from the inventory crate
 _dir = getDir player;
 player setDir 180+_dir;
-//player setDir 0;
 nul = [] execVM "InventorySystem\pointCamera.sqf";
 
 SVIS_EQP_MUTEX = false;
@@ -55,20 +54,7 @@ SVIS_EQP_MUTEX = false;
 _ok = createDialog "InventoryDialog"; 
 if !(_ok) then {hint "Dialog couldn't be opened!"};
 
-// initialize dialog gui
-//TODO move all gui init to gui's onLoad
-[0,"Init"] call setGUI;
-[0,"SetHeadgear", true] call setGUI;
-[0,"SetUniform", true] call setGUI;
-[0,"SetVest", true] call setGUI;
-[0,"SetBackpack", true] call setGUI;
-[0,"SetPrimaryWeapon", true] call setGUI;
-[0,"SetSecondaryWeapon", true] call setGUI;
-
-
-
 waitUntil { !dialog }; //BUG if user is switching gear and presses ESC, there is a change gear will be removed but not added
-
 
 // garbage collect
 SVIS_HEADGEAR_ARRAY = nil;

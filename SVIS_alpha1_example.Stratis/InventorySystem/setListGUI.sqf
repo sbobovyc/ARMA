@@ -1,6 +1,7 @@
 /**
   1. Set camera
   2. Fill list
+  Uses global variable SVIS_SELECTED_BUTTON.
 */
 
 #include "InventoryDialogDefs.hpp"  
@@ -9,9 +10,14 @@ getItemMap = compile preprocessFileLineNumbers "InventorySystem\getItemMap.sqf";
 
 _type = _this select 0;
 _rtn = nil;
+SVIS_SELECTED_BUTTON = "";
 
 // clear out listbox
 lbClear MULTIPURPOSE_LISTBOX;
+
+// enable + and - buttons
+ctrlEnable [ADD_ITEM_BUTTON, true];
+ctrlEnable [REMOVE_ITEM_BUTTON, true];
 
 while {SVIS_EQP_MUTEX} do {}; // spin lock on mutex to wait for gear to be switched before updating the listbox
 switch(_type) do
@@ -25,16 +31,19 @@ switch(_type) do
 	{
 		diag_log format["SVIS: setListGUI, Uniform"];
 		_rtn = [UniformItems player] call getItemMap;
+		SVIS_SELECTED_BUTTON = "Uniform";
 	};
 	case "Vest": 
 	{
 		diag_log format["SVIS: setListGUI, Vest"];	
 		_rtn = [VestItems player] call getItemMap;
+		SVIS_SELECTED_BUTTON = "Vest";
 	};	
 	case "Backpack": 
 	{
 		diag_log format["SVIS: setListGUI, Backpack"];		
 		_rtn = [BackpackItems player] call getItemMap;
+		SVIS_SELECTED_BUTTON = "Backpack";
 	};	
 	case "Weapon": 
 	{

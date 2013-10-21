@@ -6,6 +6,8 @@
   * TODO: put assigned items in a single array
   */
 
+  addToInventory = compile preprocessFileLineNumbers "InventorySystem\addToInventory.sqf";
+
 waitUntil {!(isNull player)};
 waitUntil {player==player};
 
@@ -136,8 +138,7 @@ if( (count SVIS_INVENTORY) != 0) then
 	{
 		player addSecondaryWeaponItem _x;
 	} forEach _secondary_items;	
-
-	addToInventory = compile preprocessFileLineNumbers "InventorySystem\addToIventory.sqf";
+	
 	[_uniform_items] call addToInventory;
 	[_vest_items] call addToInventory;
 	[_backpack_items] call addToInventory;

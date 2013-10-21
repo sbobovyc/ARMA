@@ -18,15 +18,18 @@ class InventoryDialog{
 	enableSimulation = true;      // don't freeze the game
 	controlsBackground[] = { Background };    
 	objects[] = { };               // no objects needed
-	onLoad = "((_this select 0) displayCtrl 200) progressSetPosition load player; diag_log 'InventoryDialog loaded'";
+	onLoad = "[_this select 0] execVM ""InventorySystem\initDialog.sqf""; diag_log 'InventoryDialog loaded'";
 	controls[] = { TitleLabel, 
 			HeadgearButton, 
 			HeadgearSlider, 
 			UniformButton, 
 			UniformSlider, 
+			UniformLoad,
 			VestButton,
+			VestLoad,
 			VestSlider,
 			BackpackButton,
+			BackpackLoad,
 			BackpackSlider,			
 			WeaponButton,
 			WeaponSlider,		
@@ -181,6 +184,14 @@ class InventoryDialog{
 		action = "[""Uniform""] execVM ""InventorySystem\pointCamera.sqf""; [""Uniform""] execVM ""InventorySystem\setListGUI.sqf"";";
 		y = Y_POS+0.4;
 	};
+	
+	class UniformLoad : RscProgress {
+		idc = UNIFORM_LOAD;
+		x = X_POS+0.05;
+		y = Y_POS+0.45;
+		w = 0.2;
+		tooltip = "Uniform load";
+	};		
 
 	class UniformSlider : HorizSlider {
 		idc = UNIFORM_SLIDER;
@@ -194,6 +205,14 @@ class InventoryDialog{
 		action = "[""Vest""] execVM ""InventorySystem\pointCamera.sqf""; [""Vest""] execVM ""InventorySystem\setListGUI.sqf"";";
 		y = Y_POS+0.6;
 	};
+	
+	class VestLoad : RscProgress {
+		idc = VEST_LOAD;
+		x = X_POS+0.05;
+		y = Y_POS+0.65;
+		w = 0.2;
+		tooltip = "Vest load";
+	};		
 
 	class VestSlider : HorizSlider {
 		idc = VEST_SLIDER;
@@ -204,9 +223,17 @@ class InventoryDialog{
 	class BackpackButton : Button {
 		idc = BACKPACK_BUTTON;
 		text = "Backpack Name";
-		action = "[""Backpack""] execVM ""InventorySystem\pointCamera.sqf""; [""Backpack""] execVM ""InventorySystem\setListGUI.sqf""; [""Backpack""] execVM ""InventorySystem\setListGUI.sqf"";";
+		action = "[""Backpack""] execVM ""InventorySystem\pointCamera.sqf""; [""Backpack""] execVM ""InventorySystem\setListGUI.sqf"";";
 		y = Y_POS+0.8;
 	};
+	
+	class BackpackLoad : RscProgress {
+		idc = BACKPACK_LOAD;
+		x = X_POS+0.05;
+		y = Y_POS+0.85;
+		w = 0.2;
+		tooltip = "Backpack load";
+	};		
 
 	class BackpackSlider : HorizSlider {
 		idc = BACKPACK_SLIDER;
@@ -263,23 +290,29 @@ class InventoryDialog{
 	};
 	
 	class AddButton : Button {
+		idc = ADD_ITEM_BUTTON;
 		text = "+";
-		action = "diag_log ""Add selected item""";
+		//action = "diag_log ""Add selected item""";
 		x = X_POS + 0.3;
 		y = Y_POS+1.5;
 		w = 0.1;
+		sizeEx = 0.1;
 		style = ST_CENTER;
 		tooltip = "Add selected item";
+		action = "nul = [(findDisplay -1) displayCtrl 201, ""ADD""] execVM ""InventorySystem\modifyEquipment.sqf"";";
 	};	
 	
 	class RemoveButton : Button {
+		idc = REMOVE_ITEM_BUTTON;
 		text = "-";
-		action = "diag_log ""Remove selected item""";
-		x = X_POS + 0.4;
+		//action = "diag_log ""Remove selected item""";
+		x = X_POS + 0.52;
 		y = Y_POS+1.5;
 		w = 0.1;
+		sizeEx = 0.1;
 		style = ST_CENTER;
 		tooltip = "Remove selected item";
+		action = "nul = [(findDisplay -1) displayCtrl 201, ""SUB""] execVM ""InventorySystem\modifyEquipment.sqf"";";
 	};		
 };
 

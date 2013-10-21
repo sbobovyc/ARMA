@@ -34,6 +34,9 @@ if(count _this > 2) then
 // set the total load progress bar if display is a valid display object
 if(typeName _display == "DISPLAY")  then
 {
+	(_display displayCtrl UNIFORM_LOAD) progressSetPosition loadUniform player;
+	(_display displayCtrl VEST_LOAD) progressSetPosition loadVest player;
+	(_display displayCtrl BACKPACK_LOAD) progressSetPosition loadBackpack player;
 	(_display displayCtrl TOTAL_LOAD) progressSetPosition load player;
 };
 

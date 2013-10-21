@@ -17,7 +17,7 @@ _type = _this select 1;
 _index = _this select 2;
 
 getItemArray = compile preprocessFileLineNumbers "InventorySystem\getItemArray.sqf";
-addToInventory = compile preprocessFileLineNumbers "InventorySystem\addToIventory.sqf";
+addToInventory = compile preprocessFileLineNumbers "InventorySystem\addToInventory.sqf";
 setGUI = compile preprocessFileLineNumbers "InventorySystem\setGUI.sqf";
 
 if(!SVIS_EQP_MUTEX) then {

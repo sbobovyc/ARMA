@@ -23,5 +23,6 @@
 #define MULTIPURPOSE_LISTBOX 201
 #define ADD_ITEM_BUTTON 202
 #define REMOVE_ITEM_BUTTON 203
+#define MULTIPURPOSE_NLISTBOX 300
 
-#define TITLE "Stan's Visual Inventory System"
+#define MAIN_TITLE "Stan's Visual Inventory System"

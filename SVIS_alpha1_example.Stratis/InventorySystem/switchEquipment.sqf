@@ -76,10 +76,13 @@ switch(_type) do
 		_selected_backpack = _backpack_array select _index; 
 		player addBackpack (_selected_backpack);
 		[SVIS_INVENTORY select 7] call addToInventory;
+		diag_log format["SVIS: switchEquipment, backpack %1", _selected_backpack];
+		
 		// update gui
 		[_display, "SetBackpack"] call setGUI;
-
-		diag_log format["SVIS: switchEquipment, backpack %1", _selected_backpack];
+		["Backpack"] execVM "InventorySystem\setNListGUI.sqf";
+		
+		
 	};	
 	case "Weapon": 
 	{

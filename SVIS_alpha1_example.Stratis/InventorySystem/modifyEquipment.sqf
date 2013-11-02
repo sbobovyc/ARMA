@@ -3,7 +3,7 @@
  * @author sbobovyc
  * TODO: commands like addItemToVest don't work, so I have to use a custom function that puts items where ever.
  * TODO: commands like removeItemToVest don't work, so I have to use a custom function that puts items where ever. 
- * TODO: move gui code to setListGUI.sqf or setGUI.sqf.
+ * TODO: move gui code to setNListGUI.sqf or setGUI.sqf.
  */
  
  #include "InventoryDialogDefs.hpp"
@@ -14,18 +14,14 @@
  removeFromInventory = compile preprocessFileLineNumbers "InventorySystem\removeFromInventory.sqf";
  
 disableSerialization;
- _control = _this select 0; 
+_control = _this select 0; 
 _type = _this select 1;
-_j = 0;
-if( count (lbSelection _control) != 0) then {
-	_j = (lbSelection _control) select 0;
-};	
+_j = lnbCurSelRow  _control;
 
  switch(_type) do
 {
 	case "ADD":
 	{				
-		diag_log format["Selected %1", SVIS_SELECTED_BUTTON];
 		switch(SVIS_SELECTED_BUTTON) do {		
 			case "Uniform":
 			{
@@ -33,29 +29,26 @@ if( count (lbSelection _control) != 0) then {
 				_item = ((_rtn select 0) select _j);
 				diag_log (_rtn select 0);
 				diag_log format["SVIS: modifyEquipment.sqf: adding %1 to Uniform", _item];			
-				//player addItemToVest _item; // This does not work for some reason, so I use my custom function
-				[[_item]] call addToInventory;
-				["Uniform"] execVM "InventorySystem\setListGUI.sqf";
-				((findDisplay -1) displayCtrl UNIFORM_LOAD) progressSetPosition loadUniform player;
+				player addItemToUniform _item; // This does not work for some reason, so I use my custom function
+				["Uniform"] execVM "InventorySystem\setNListGUI.sqf";				
 			};			
 			case "Vest":
 			{
 				_rtn = [VestItems player] call getItemMap;
 				_item = ((_rtn select 0) select _j);
 				diag_log format["SVIS: modifyEquipment.sqf: adding %1 to Vest", _item];			
-				//player addItemToVest _item; // This does not work for some reason, so I use my custom function
-				[[_item]] call addToInventory;
-				["Vest"] execVM "InventorySystem\setListGUI.sqf";
-				((findDisplay -1) displayCtrl VEST_LOAD) progressSetPosition loadVest player;
+				player addItemToVest _item; // This does not work for some reason, so I use my custom function
+				["Vest"] execVM "InventorySystem\setNListGUI.sqf";				
 			};		
 			case "Backpack":
 			{
 				_rtn = [BackpackItems player] call getItemMap;
-				_item = ((_rtn select 0) select _j);
-				diag_log format["SVIS: modifyEquipment.sqf: adding %1 to Backpack", _item];			
-				[[_item]] call addToInventory;
-				["Backpack"] execVM "InventorySystem\setListGUI.sqf";
-				((findDisplay -1) displayCtrl BACKPACK_LOAD) progressSetPosition loadBackpack player;
+				if( count (_rtn select 0) != 0) then { // if there is nothing in the item map, do nothing
+					_item = ((_rtn select 0) select _j);
+					diag_log format["SVIS: modifyEquipment.sqf: adding %1 to Backpack", _item];			
+					player addItemToBackpack _item;				
+				};
+				["Backpack"] execVM "InventorySystem\setNListGUI.sqf";
 			};				
 		};
 	};
@@ -67,10 +60,9 @@ if( count (lbSelection _control) != 0) then {
 				_rtn = [UniformItems player] call getItemMap;
 				_item = ((_rtn select 0) select _j);
 				diag_log format["SVIS: modifyEquipment.sqf: removing %1 from Uniform", _item];			
-				//player removeItemToVest _item; // This does not work for some reason, so I use my custom function
+				//player removeItemFromUniform _item; // This does not work for some reason, so I use my custom function
 				[[_item]] call removeFromInventory;
-				["Uniform"] execVM "InventorySystem\setListGUI.sqf";				
-				((findDisplay -1) displayCtrl UNIFORM_LOAD) progressSetPosition loadUniform player;
+				["Uniform"] execVM "InventorySystem\setNListGUI.sqf";				
 			};		
 			case "Vest":
 			{
@@ -79,8 +71,7 @@ if( count (lbSelection _control) != 0) then {
 				diag_log format["SVIS: modifyEquipment.sqf: removing %1 from Vest", _item];			
 				//player removeItemToVest _item; // This does not work for some reason, so I use my custom function
 				[[_item]] call removeFromInventory;
-				["Vest"] execVM "InventorySystem\setListGUI.sqf";
-				((findDisplay -1) displayCtrl VEST_LOAD) progressSetPosition loadVest player;
+				["Vest"] execVM "InventorySystem\setNListGUI.sqf";
 			};
 			case "Backpack":
 			{
@@ -88,9 +79,21 @@ if( count (lbSelection _control) != 0) then {
 				_item = ((_rtn select 0) select _j);
 				diag_log format["SVIS: modifyEquipment.sqf: removing %1 from Backpack", _item];			
 				[[_item]] call removeFromInventory;
-				["Backpack"] execVM "InventorySystem\setListGUI.sqf";
-				((findDisplay -1) displayCtrl BACKPACK_LOAD) progressSetPosition loadBackpack player;
+				["Backpack"] execVM "InventorySystem\setNListGUI.sqf";
 			};			
+			case "Weapon": 
+			{
+				_rtn = primaryWeaponItems player;
+				_item_list = [];
+				{
+					if (_x != "") then {
+						_item_list = _item_list + [_x];
+					};
+				} forEach _rtn;
+				_item = (_item_list select _j);
+				player removePrimaryWeaponItem  _item;
+				["Weapon"] execVM "InventorySystem\setNListGUI.sqf";
+			};
 		};
 	};	
 	default
@@ -100,4 +103,7 @@ if( count (lbSelection _control) != 0) then {
 	};
 };
 
+((findDisplay -1) displayCtrl UNIFORM_LOAD) progressSetPosition loadUniform player;
+((findDisplay -1) displayCtrl VEST_LOAD) progressSetPosition loadVest player;
+((findDisplay -1) displayCtrl BACKPACK_LOAD) progressSetPosition loadBackpack player;
 ((findDisplay -1) displayCtrl TOTAL_LOAD) progressSetPosition load player;

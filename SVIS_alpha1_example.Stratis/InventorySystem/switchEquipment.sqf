@@ -87,7 +87,7 @@ switch(_type) do
 	case "Weapon": 
 	{
 		_weapon_array = SVIS_WEAPON_ARRAY;
-		//BUG some magazines still get left behind
+		//TODO this should be made into a function and used here and removeItem
 		_mags = getArray(configFile >> "CfgWeapons" >> primaryWeapon player >> "magazines");
 		_wpn_cnt = [player, primaryWeapon player] call BIS_fnc_invRemove;
 		diag_log format["SVIS: switchEquipment, removed weapon count %1", _wpn_cnt];

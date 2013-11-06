@@ -90,16 +90,16 @@ switch(_type) do {
 		ctrlEnable [ADD_ITEM_BUTTON, false];	// disable add button 
 		diag_log format["SVIS: setNListGUI, Weapon"];	
 		if(primaryWeapon player != "") then {
-			_rtn = primaryWeaponItems player;			
+			_rtn = primaryWeaponItems player;		
+			if(_rtn select 0 == "" && _rtn select 1 == "" && _rtn select 2 == "") then {
+				ctrlEnable [REMOVE_ITEM_BUTTON, false];	// disable sub button		
+			} else {
+				ENABLE_MINUS;
+			};			
 		} else {
 			ctrlEnable [REMOVE_ITEM_BUTTON, false];	// disable sub button
 			_rtn = [];
 		};			
-		if(_rtn select 0 == "" && _rtn select 1 == "" && _rtn select 2 == "") then {
-			ctrlEnable [REMOVE_ITEM_BUTTON, false];	// disable sub button		
-		} else {
-			ENABLE_MINUS;
-		};
 		SVIS_SELECTED_BUTTON = "Weapon";
 	};		
 	case "SecondaryWeapon":	

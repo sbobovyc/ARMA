@@ -25,4 +25,17 @@
 #define REMOVE_ITEM_BUTTON 203
 #define MULTIPURPOSE_NLISTBOX 300
 
+#define CLEAR_HEADGEAR_BUTTON 400
+#define CLEAR_UNIFORM_BUTTON 401
+#define CLEAR_VEST_BUTTON 402
+#define CLEAR_BACKPACK_BUTTON 403
+#define CLEAR_WEAPON_BUTTON 404
+
+
+#define HEADGEAR_BUTTON_TEXT "Headgear Name"
+#define UNIFORM_BUTTON_TEXT "Uniform Name"
+#define VEST_BUTTON_TEXT "Vest Name"
+#define BACKPACK_BUTTON_TEXT "Backpack Name"
+#define WEAPON_BUTTON_TEXT "Primary Weapon Name"
+
 #define MAIN_TITLE "Stan's Visual Inventory System"

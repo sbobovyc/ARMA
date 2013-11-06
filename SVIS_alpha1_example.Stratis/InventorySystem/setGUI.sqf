@@ -74,6 +74,9 @@ switch(_gui_action) do
 			};
 			_headgear_name = getText(configFile >> "CfgWeapons" >> _headgear >> "displayName");
 			ctrlSetText[HEADGEAR_BUTTON, _headgear_name];
+		} else {
+			sliderSetPosition [HEADGEAR_SLIDER, 0];
+			ctrlSetText[HEADGEAR_BUTTON, HEADGEAR_BUTTON_TEXT];
 		};
 	};
 	case SET_SU:
@@ -86,6 +89,9 @@ switch(_gui_action) do
 			};
 			_uniform_name = getText(configFile >> "CfgWeapons" >> _uniform >> "displayName");
 			ctrlSetText[UNIFORM_BUTTON, _uniform_name];
+		} else {
+			sliderSetPosition [UNIFORM_SLIDER, 0];
+			ctrlSetText[UNIFORM_BUTTON, UNIFORM_BUTTON_TEXT];
 		};
 	};
 	case SET_SV:
@@ -98,6 +104,9 @@ switch(_gui_action) do
 			};
 			_vest_name = getText(configFile >> "CfgWeapons" >> _vest >> "displayName");
 			ctrlSetText[VEST_BUTTON, _vest_name];
+		} else {
+			sliderSetPosition [VEST_SLIDER, 0];
+			ctrlSetText[VEST_BUTTON, VEST_BUTTON_TEXT];		
 		};
 	};
 	case SET_SB:
@@ -110,6 +119,9 @@ switch(_gui_action) do
 			};
 			_backpack_name = getText(configFile >> "CfgVehicles" >> _backpack >> "displayName");
 			ctrlSetText[BACKPACK_BUTTON, _backpack_name];
+		} else {
+			sliderSetPosition [BACKPACK_SLIDER, 0];
+			ctrlSetText[BACKPACK_BUTTON, BACKPACK_BUTTON_TEXT];		
 		};
 	};
 	case SET_SPW:
@@ -122,6 +134,9 @@ switch(_gui_action) do
 			};	
 			_weapon_name = getText(configFile >> "CfgWeapons" >> _primary_weapon >> "displayName");
 			ctrlSetText[WEAPON_BUTTON, _weapon_name];
+		} else {
+			sliderSetPosition [WEAPON_SLIDER, 0];
+			ctrlSetText[WEAPON_BUTTON, WEAPON_BUTTON_TEXT];			
 		};
 	};
 	case SET_SSW:

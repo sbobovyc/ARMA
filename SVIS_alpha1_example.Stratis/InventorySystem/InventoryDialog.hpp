@@ -37,7 +37,7 @@ class InventoryDialog{
 			WeaponSlider,		
 			SecondaryWeaponButton,
 			SecondaryWeaponSlider,
-			CloseButton, MultipurposeNListBox, AddButton, RemoveButton, TotalLoad};  // controls	
+			CloseButton, MultipurposeNListBox, AddButton, RemoveButton, TotalLoad, ClearHeadgearButton, ClearUniformButton, ClearVestButton, ClearBackpackButton, ClearWeaponButton};  // controls	
 
 	class Common {
 		x = X_POS + 0.05;
@@ -212,10 +212,20 @@ class InventoryDialog{
 		
 	class HeadgearButton : Button {
 		idc = HEADGEAR_BUTTON;
-		text = "Headgear Name";
+		text = HEADGEAR_BUTTON_TEXT;
 		action = "[""Headgear""] execVM ""InventorySystem\pointCamera.sqf""; [""Headgear""] execVM ""InventorySystem\setNListGUI.sqf"";";
 		y = Y_POS+0.2;
 	};
+	
+	class ClearHeadgearButton : Button {
+		idc = CLEAR_HEADGEAR_BUTTON;
+		style = ST_CENTER;
+		text = "X";
+		action = "nul = [""Headgear""] execVM ""InventorySystem\removeItem.sqf"";";
+		x = X_POS+0.28;
+		y = Y_POS+0.2;
+		w = 0.02;
+	};	
 
 	class HeadgearSlider : HorizSlider {
 		idc = HEADGEAR_SLIDER;
@@ -225,10 +235,20 @@ class InventoryDialog{
 
 	class UniformButton : Button {
 		idc = UNIFORM_BUTTON;
-		text = "Uniform Name";
+		text = UNIFORM_BUTTON_TEXT;
 		action = "[""Uniform""] execVM ""InventorySystem\pointCamera.sqf""; [""Uniform""] execVM ""InventorySystem\setNListGUI.sqf"";";
 		y = Y_POS+0.4;
 	};
+	
+	class ClearUniformButton : Button {
+		idc = CLEAR_UNIFORM_BUTTON;
+		style = ST_CENTER;
+		text = "X";
+		action = "nul = [""Uniform""] execVM ""InventorySystem\removeItem.sqf"";";
+		x = X_POS+0.28;
+		y = Y_POS+0.4;
+		w = 0.02;
+	};		
 	
 	class UniformLoad : RscProgress {
 		idc = UNIFORM_LOAD;
@@ -251,6 +271,16 @@ class InventoryDialog{
 		y = Y_POS+0.6;
 	};
 	
+	class ClearVestButton : Button {
+		idc = CLEAR_VEST_BUTTON;
+		style = ST_CENTER;
+		text = "X";
+		action = "nul = [""Vest""] execVM ""InventorySystem\removeItem.sqf"";";
+		x = X_POS+0.28;
+		y = Y_POS+0.6;
+		w = 0.02;
+	};
+	
 	class VestLoad : RscProgress {
 		idc = VEST_LOAD;
 		x = X_POS+0.05;
@@ -267,10 +297,20 @@ class InventoryDialog{
 
 	class BackpackButton : Button {
 		idc = BACKPACK_BUTTON;
-		text = "Backpack Name";
+		text = BACKPACK_BUTTON_TEXT;
 		action = "[""Backpack""] execVM ""InventorySystem\pointCamera.sqf""; [""Backpack""] execVM ""InventorySystem\setNListGUI.sqf"";";
 		y = Y_POS+0.8;
 	};
+	
+	class ClearBackpackButton : Button {
+		idc = CLEAR_BACKPACK_BUTTON;
+		style = ST_CENTER;
+		text = "X";
+		action = "nul = [""Backpack""] execVM ""InventorySystem\removeItem.sqf"";";
+		x = X_POS+0.28;
+		y = Y_POS+0.8;
+		w = 0.02;
+	};	
 	
 	class BackpackLoad : RscProgress {
 		idc = BACKPACK_LOAD;
@@ -288,10 +328,20 @@ class InventoryDialog{
 
 	class WeaponButton : Button {
 		idc = WEAPON_BUTTON;
-		text = "Primary Weapon Name";
+		text = WEAPON_BUTTON_TEXT;
 		action = "[""Weapon""] execVM ""InventorySystem\pointCamera.sqf""; [""Weapon""] execVM ""InventorySystem\setNListGUI.sqf"";";
 		y = Y_POS+1.0;
 	};
+	
+	class ClearWeaponButton : Button {
+		idc = CLEAR_WEAPON_BUTTON;
+		style = ST_CENTER;
+		text = "X";
+		action = "nul = [""Weapon""] execVM ""InventorySystem\removeItem.sqf"";";
+		x = X_POS+0.28;
+		y = Y_POS+1.0;
+		w = 0.02;
+	};		
 
 	class WeaponSlider : HorizSlider {
 		idc = WEAPON_SLIDER;

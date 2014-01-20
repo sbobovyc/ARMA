@@ -37,7 +37,8 @@ class InventoryDialog{
 			WeaponSlider,		
 			SecondaryWeaponButton,
 			SecondaryWeaponSlider,
-			CloseButton, MultipurposeNListBox, AddButton, RemoveButton, TotalLoad, ClearHeadgearButton, ClearUniformButton, ClearVestButton, ClearBackpackButton, ClearWeaponButton};  // controls	
+			CloseButton, MultipurposeNListBox, AddButton, RemoveButton, TotalLoad, ClearHeadgearButton, ClearUniformButton, 
+			ClearVestButton, ClearBackpackButton, ClearWeaponButton, ClearSecondaryWeaponButton};  // controls	
 
 	class Common {
 		x = X_POS + 0.05;
@@ -351,10 +352,20 @@ class InventoryDialog{
 
 	class SecondaryWeaponButton : Button {
 		idc = SECONDARY_WEAPON_BUTTON;
-		text = "Secondary Weapon Name";
+		text = SECONDARY_WEAPON_BUTTON_TEXT;
 		action = "[""Backpack""] execVM ""InventorySystem\pointCamera.sqf""; [""SecondaryWeapon""] execVM ""InventorySystem\setNListGUI.sqf"";";
 		y = Y_POS+1.2;
 	};
+	
+	class ClearSecondaryWeaponButton : Button {
+		idc = CLEAR_SECONDARY_WEAPON_BUTTON;
+		style = ST_CENTER;
+		text = "X";
+		action = "nul = [""SecondaryWeapon""] execVM ""InventorySystem\removeItem.sqf"";";
+		x = X_POS+0.28;
+		y = Y_POS+1.2;
+		w = 0.02;
+	};		
 	
 	class SecondaryWeaponSlider : HorizSlider {
 		idc = SECONDARY_WEAPON_SLIDER;

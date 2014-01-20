@@ -30,6 +30,7 @@
 #define CLEAR_VEST_BUTTON 402
 #define CLEAR_BACKPACK_BUTTON 403
 #define CLEAR_WEAPON_BUTTON 404
+#define CLEAR_SECONDARY_WEAPON_BUTTON 405
 
 
 #define HEADGEAR_BUTTON_TEXT "Headgear Name"
@@ -37,5 +38,6 @@
 #define VEST_BUTTON_TEXT "Vest Name"
 #define BACKPACK_BUTTON_TEXT "Backpack Name"
 #define WEAPON_BUTTON_TEXT "Primary Weapon Name"
+#define SECONDARY_WEAPON_BUTTON_TEXT "Secondary Weapon Name"
 
 #define MAIN_TITLE "Stan's Visual Inventory System"

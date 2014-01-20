@@ -54,6 +54,22 @@
 		[0,"SetPrimaryWeapon"] call setGUI;
 		["Weapon"] call setNListGUI;
 	};		
+	case "SecondaryWeapon":
+	{
+		//TODO this should be made into a function and used here and switchEquipment
+		_mags = getArray(configFile >> "CfgWeapons" >> secondaryWeapon player >> "magazines");
+		_wpn_cnt = [player, secondaryWeapon player] call BIS_fnc_invRemove;
+		diag_log format["SVIS: removeItem, removed weapon count %1", _wpn_cnt];
+
+		// remove weapon magazines so that inventory does not get cluttered
+		{
+			_cnt = [player, _x, 100] call BIS_fnc_invRemove;
+			diag_log format["SVIS: removeItem, removed mag %1, count %2", _x, _cnt];
+		} forEach _mags;
+
+		[0,"SetSecondaryWeapon"] call setGUI;
+		["SecondaryWeapon"] call setNListGUI;
+	};	
 	default
 	{
 		diag_log "SVIS: Error in removeItem";	

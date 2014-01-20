@@ -20,7 +20,8 @@ class Mission
 		"A3_Structures_F_Ind_Cargo",
 		"a3_weapons_f_beta_ammoboxes",
 		"a3_characters_f_beta",
-		"A3_Characters_F_INDEP"
+		"A3_Characters_F_INDEP",
+		"A3_Soft_F_MRAP_03"
 	};
 	addOnsAuto[]=
 	{

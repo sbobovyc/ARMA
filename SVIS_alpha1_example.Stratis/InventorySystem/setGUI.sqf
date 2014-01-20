@@ -149,6 +149,9 @@ switch(_gui_action) do
 			};	
 			_weapon_name = getText(configFile >> "CfgWeapons" >> _secondary_weapon >> "displayName");
 			ctrlSetText[SECONDARY_WEAPON_BUTTON, _weapon_name];
+		} else {
+			sliderSetPosition [SECONDARY_WEAPON_SLIDER, 0];
+			ctrlSetText[SECONDARY_WEAPON_BUTTON, SECONDARY_WEAPON_BUTTON_TEXT];					
 		};
 	};
 };

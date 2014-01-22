@@ -188,7 +188,18 @@ class InventoryDialog{
 		arrowFull = "#(argb,8,8,3)color(1,1,1,1)"; 
 		shadow = 0; 
 		colorDisabled[] = {1,1,1,0.3};		
-		
+
+		class ListScrollBar { 
+			color[] = {1,1,1,0.6}; 
+			colorActive[] = {1,1,1,1}; 
+			colorDisabled[] = {1,1,1,0.3}; 
+			thumb = "#(argb,8,8,3)color(1,1,1,1)"; 
+			arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)"; 
+			arrowFull = "#(argb,8,8,3)color(1,1,1,1)"; 
+			border = "#(argb,8,8,3)color(1,1,1,1)"; 
+			shadow = 0; 
+		}; 
+        
 		class ScrollBar { 
 			color[] = {1,1,1,0.6}; 
 			colorActive[] = {1,1,1,1}; 
@@ -418,7 +429,7 @@ class InventoryDialog{
 		tooltip = "Remove selected item";
 		action = "nul = [(findDisplay -1) displayCtrl 300, ""SUB""] execVM ""InventorySystem\modifyEquipment.sqf"";";
 	};
-	
+	    
 	class MultipurposeNListBox : RscListNBox {
 		idc = MULTIPURPOSE_NLISTBOX;
 		y = Y_POS + 0.2;
@@ -426,5 +437,6 @@ class InventoryDialog{
 		h = 1.3;
 		w = 0.5;
 	};	
+        
 };
 

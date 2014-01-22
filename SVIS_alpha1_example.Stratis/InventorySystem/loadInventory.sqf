@@ -55,10 +55,18 @@ if( (count SVIS_INVENTORY) != 0) then
 	player addGoggles _goggles; //TODO possibly causes "Bad vehicle type"	
 	player addUniform _uniform;
 	player addVest _vest;
-	player addBackpack _backpack;	
-	[player, _primary_weapon, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added
-	[player, _secondary_weapon, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added
-	[player, _handgun, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added	
+    if(_backpack != "") then {
+        player addBackpack _backpack;	
+    };
+    
+	//[player, _primary_weapon, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added
+	//[player, _secondary_weapon, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added
+	//[player, _handgun, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added	
+    {
+        if(_x != "") then {
+            [player, _x, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added	
+        };
+    } forEach [_primary_weapon, _secondary_weapon, _handgun];    
 	
 	if(_range_finder) then {
 		player removeWeapon "Binocular";

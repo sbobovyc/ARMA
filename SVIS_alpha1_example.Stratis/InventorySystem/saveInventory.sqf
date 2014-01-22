@@ -72,3 +72,36 @@ SVIS_INVENTORY set[18, _watch];
 SVIS_INVENTORY set[19, _radio];
 SVIS_INVENTORY set[20, _gps];
 
+diag_log SVIS_INVENTORY;
+// Create script for adding weapons and items in inventory and put it in the clipboard
+//TODO This needs to be moved into its own function
+_script = "removeAllWeapons this; removeHeadgear this; removeGoggles this; removeUniform this; removeVest this; removeBackpack this;";
+    
+if(_headgear != "") then {
+    _script = _script + format["this addHeadgear ""%1"";", _headgear]
+};    
+    
+if(_goggles != "") then {
+    _script = _script + format["this addGoggles ""%1"";", _goggles]
+};
+    
+if(_uniform != "") then {
+    _script = _script + format["this addUniform ""%1"";", _uniform]
+};    
+    
+if(_vest != "") then {
+    _script = _script + format["this addVest ""%1"";", _vest]
+};
+    
+if(_backpack != "") then {
+    _script = _script + format["this addBackpack ""%1"";", _backpack]
+};
+
+{
+    if(_x != "") then {
+        _script = _script + format["[this, ""%1"", 1] call BIS_fnc_addWeapon;", _x];
+    };
+} forEach [_primary_weapon, _secondary_weapon, _handgun];
+
+diag_log _script;
+copyToClipboard _script;

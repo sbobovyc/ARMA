@@ -37,7 +37,7 @@ class Mission
 	class Intel
 	{
 		briefingName="SVIS example";
-		overviewText="SVIS demonstration mission (1.1)";
+		overviewText="SVIS demonstration mission (1.2)";
 		startWeather=0.29999998;
 		startWind=0.099999994;
 		startWaves=0.099999994;
@@ -82,7 +82,7 @@ class Mission
 					player="PLAY CDG";
 					rank="SERGEANT";
 					skill=0.46666664;
-					init="loadInventory = compile preprocessFileLineNumbers ""InventorySystem\loadInventory.sqf""; SVIS_INVENTORY = []; SVIS_INVENTORY set[0, ""H_Beret_ocamo""]; SVIS_INVENTORY set[1,  ""G_Aviator""]; SVIS_INVENTORY set[2, ""U_BG_Guerilla3_1""]; SVIS_INVENTORY set[3, [""FirstAidKit"",""16Rnd_9x21_Mag"",""16Rnd_9x21_Mag"",""HandGrenade"",""B_IR_Grenade"",""SmokeShell"",""SmokeShellGreen"",""SmokeShellBlue""]]; SVIS_INVENTORY set[4, ""V_Chestrig_khk""]; SVIS_INVENTORY set[5, [""SmokeShellOrange"",""Chemlight_green"",""20Rnd_762x51_Mag"",""20Rnd_762x51_Mag"",""20Rnd_762x51_Mag"",""20Rnd_762x51_Mag"",""20Rnd_762x51_Mag"",""B_IR_Grenade"",""HandGrenade"",""Chemlight_green""]]; SVIS_INVENTORY set[6, ""B_AssaultPack_dgtl""]; SVIS_INVENTORY set[7, []]; SVIS_INVENTORY set[8, ""srifle_EBR_F""]; SVIS_INVENTORY set[9, """"]; SVIS_INVENTORY set[10, ""hgun_P07_F""]; SVIS_INVENTORY set[11, ["""","""",""""]]; SVIS_INVENTORY set[12, []]; SVIS_INVENTORY set[13, false]; SVIS_INVENTORY set[14, false]; SVIS_INVENTORY set[15, true]; SVIS_INVENTORY set[16, true]; SVIS_INVENTORY set[17, true]; SVIS_INVENTORY set[18, true]; SVIS_INVENTORY set[19, true]; SVIS_INVENTORY set[20, true];  [this, true] call loadInventory; ";
+					init="loadInventory = compile preprocessFileLineNumbers ""InventorySystem\loadInventory.sqf""; SVIS_INVENTORY = []; SVIS_INVENTORY set[0, ""H_Beret_ocamo""]; SVIS_INVENTORY set[1,  ""G_Aviator""]; SVIS_INVENTORY set[2, ""U_BG_Guerilla3_1""]; SVIS_INVENTORY set[3, [""FirstAidKit"",""16Rnd_9x21_Mag"",""16Rnd_9x21_Mag"",""HandGrenade"",""B_IR_Grenade"",""SmokeShell"",""SmokeShellGreen"",""SmokeShellBlue""]]; SVIS_INVENTORY set[4, ""V_Chestrig_khk""]; SVIS_INVENTORY set[5, [""SmokeShellOrange"",""Chemlight_green"",""20Rnd_762x51_Mag"",""20Rnd_762x51_Mag"",""20Rnd_762x51_Mag"",""20Rnd_762x51_Mag"",""20Rnd_762x51_Mag"",""B_IR_Grenade"",""HandGrenade"",""Chemlight_green""]]; SVIS_INVENTORY set[6, ""B_AssaultPack_dgtl""]; SVIS_INVENTORY set[7, []]; SVIS_INVENTORY set[8, ""srifle_EBR_F""]; SVIS_INVENTORY set[9, """"]; SVIS_INVENTORY set[10, ""hgun_P07_F""]; SVIS_INVENTORY set[11, ["""","""",""""]]; SVIS_INVENTORY set[12, []]; SVIS_INVENTORY set[13, false]; SVIS_INVENTORY set[14, false]; SVIS_INVENTORY set[15, true]; SVIS_INVENTORY set[16, true]; SVIS_INVENTORY set[17, true]; SVIS_INVENTORY set[18, true]; SVIS_INVENTORY set[19, true]; SVIS_INVENTORY set[20, true];  [this, true] call loadInventory; SVIS_INVENTORY = nil; ";
 				};
 			};
 		};

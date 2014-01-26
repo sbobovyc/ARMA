@@ -98,6 +98,7 @@ SVIS_INVENTORY set[19, %20];
 SVIS_INVENTORY set[20, %21];
 
 [this, true] call loadInventory;
+SVIS_INVENTORY = nil;
 ",
 _headgear,
 _goggles,

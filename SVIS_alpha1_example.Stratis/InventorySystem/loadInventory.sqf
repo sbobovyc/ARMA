@@ -11,6 +11,8 @@ addToInventory = compile preprocessFileLineNumbers "InventorySystem\addToInvento
 _entity = nil;
 _init = nil;
 
+if(isNil("SVIS_INVENTORY")) exitWith{};
+
 // if call originated from AddAction
 if ((count _this) > 2) then {
     _entity = _this select 1; // get caller

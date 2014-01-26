@@ -52,16 +52,13 @@ if( (count SVIS_INVENTORY) != 0) then
 	removeBackpack player;
 		
 	player addHeadgear _headgear;	
-	player addGoggles _goggles; //TODO possibly causes "Bad vehicle type"	
+	player addGoggles _goggles; 
 	player addUniform _uniform;
 	player addVest _vest;
     if(_backpack != "") then {
         player addBackpack _backpack;	
     };
-    
-	//[player, _primary_weapon, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added
-	//[player, _secondary_weapon, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added
-	//[player, _handgun, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added	
+    	
     {
         if(_x != "") then {
             [player, _x, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added	
@@ -147,9 +144,9 @@ if( (count SVIS_INVENTORY) != 0) then
 		player addSecondaryWeaponItem _x;
 	} forEach _secondary_items;	
 	
-	[_uniform_items] call addToInventory;
-	[_vest_items] call addToInventory;
-	[_backpack_items] call addToInventory;
+	[player, _uniform_items] call addToInventory;
+	[player, _vest_items] call addToInventory;
+	[player, _backpack_items] call addToInventory;
 
 	player selectWeapon _primary_weapon;
 };

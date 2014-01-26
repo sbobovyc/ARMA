@@ -5,15 +5,16 @@
   * 
   */
 
-_items = _this select 0;
+_entity = _this select 0;
+_items = _this select 1;
 {
 	diag_log format["SVIS: addToInventory: %1", _x];
 	if(isClass(configFile/"CfgMagazines"/_x)) then
 	{
-		player addMagazine _x;
+		_entity addMagazine _x;
 	} 
 	else 
 	{
-		player addItem _x;
+		_entity addItem _x;
 	};	
 } forEach _items;	

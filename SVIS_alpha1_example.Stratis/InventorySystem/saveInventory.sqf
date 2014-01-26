@@ -73,35 +73,158 @@ SVIS_INVENTORY set[19, _radio];
 SVIS_INVENTORY set[20, _gps];
 
 diag_log SVIS_INVENTORY;
-// Create script for adding weapons and items in inventory and put it in the clipboard
-//TODO This needs to be moved into its own function
-_script = "removeAllWeapons this; removeHeadgear this; removeGoggles this; removeUniform this; removeVest this; removeBackpack this;";
-    
-if(_headgear != "") then {
-    _script = _script + format["this addHeadgear ""%1"";", _headgear]
-};    
-    
-if(_goggles != "") then {
-    _script = _script + format["this addGoggles ""%1"";", _goggles]
-};
-    
-if(_uniform != "") then {
-    _script = _script + format["this addUniform ""%1"";", _uniform]
-};    
-    
-if(_vest != "") then {
-    _script = _script + format["this addVest ""%1"";", _vest]
-};
-    
-if(_backpack != "") then {
-    _script = _script + format["this addBackpack ""%1"";", _backpack]
-};
+_script = "addToInventory = compile preprocessFileLineNumbers ""InventorySystem\addToInventory.sqf""; ";
 
-{
-    if(_x != "") then {
-        _script = _script + format["[this, ""%1"", 1] call BIS_fnc_addWeapon;", _x];
+_script = _script + format["headgear_ = ""%1"";
+goggles_ = ""%2"";
+uniform_ = ""%3"";
+uniform_items_ = %4;
+vest_ = ""%5"";
+vest_items_ = %6;
+backpack_ = ""%7"";
+backpack_items_ = %8;
+primary_weapon_ = ""%9"";
+secondary_weapon_ = ""%10"";
+handgun_ = ""%11"";
+primary_items_ = %12;
+secondary_items_ = %13;
+nvg_ = %14;
+range_finder_ = %15;
+binocular_ = %16;
+map_ = %17;
+compass_ = %18;
+watch_ = %19;
+radio_ = %20;
+gps_ = %21;",
+_headgear,
+_goggles,
+_uniform,
+_uniform_items,
+_vest,
+_vest_items,
+_backpack,
+_backpack_items,
+_primary_weapon,
+_secondary_weapon,
+_handgun,
+_primary_items,
+_secondary_items,
+_nvg,
+_range_finder,
+_binocular,
+_map,
+_compass,
+_watch,
+_radio,
+_gps];
+
+_script = _script + "
+	removeAllWeapons this;
+	removeHeadgear this;
+	removeGoggles this;	
+	removeUniform this;
+	removeVest this;
+	removeBackpack this;
+		
+	this addHeadgear headgear_;	
+	this addGoggles goggles_; 	
+	this addUniform uniform_;
+	this addVest vest_;
+    if(backpack_ != """") then {
+        this addBackpack backpack_;	
     };
-} forEach [_primary_weapon, _secondary_weapon, _handgun];
+    
+    {
+        if(_x != """") then {
+            [this, _x, 1] call BIS_fnc_addWeapon;	
+        };
+    } forEach [primary_weapon_, secondary_weapon_, handgun_];    
+	
+	if(range_finder_) then {
+		this removeWeapon ""Binocular"";
+		this addWeapon ""Rangefinder"";
+	};
+	
+	if(binocular_) then {
+		this removeWeapon ""Rangefinder"";
+		this addWeapon ""Binocular"";
+	};	
+		
+	if(nvg_) then {
+		this assignItem ""NVGoggles"";
+	} else {
+		switch(side this) do {
+			case(west): {
+				this unassignItem ""NVGoggles"";	
+				this removeItem ""NVGoggles"";			
+			};
+			case(east): {
+				this unassignItem ""NVGoggles_OPFOR"";	
+				this removeItem ""NVGoggles_OPFOR"";				
+			};
+			case(independent): {
+				this unassignItem ""NVGoggles_INDEP"";	
+				this removeItem ""NVGoggles_INDEP"";					
+			};
+			default {
+				diag_log ""SVIS: faction not detected"";
+			}
+		
+		};
+	};
+		
+	if(map_) then {
+		this assignItem ""ItemMap"";	
+	} else {
+		this unassignItem ""ItemMap"";	
+	};
+
+	if(compass_) then {
+		this assignItem ""ItemCompass"";	
+	} else {
+		this unassignItem ""ItemCompass"";	
+	};	
+	
+	if(watch_) then {
+		this assignItem ""ItemWatch"";	
+	} else {
+		this unassignItem ""ItemWatch"";	
+	};	
+	
+	if(radio_) then {
+		this assignItem ""ItemRadio"";	
+	} else {
+		this unassignItem ""ItemRadio"";	
+	};		
+
+	if(gps_) then {
+		this assignItem ""ItemGPS"";	
+	} else {
+		this unassignItem ""ItemGPS"";	
+	};			
+	
+	{
+		this removePrimaryWeaponItem _x;
+	} forEach (primaryWeaponItems this);
+	
+	{
+		this addPrimaryWeaponItem _x;
+	} forEach primary_items_;
+	
+	{
+		this removeItem _x;			
+	} forEach (secondaryWeaponItems this);
+	
+	{
+		this addSecondaryWeaponItem _x;
+	} forEach secondary_items_;	
+	
+	[this, uniform_items_] call addToInventory;
+	[this, vest_items_] call addToInventory;
+	[this, backpack_items_] call addToInventory;
+
+	this selectWeapon primary_weapon_;";
+    
 
 diag_log _script;
 copyToClipboard _script;

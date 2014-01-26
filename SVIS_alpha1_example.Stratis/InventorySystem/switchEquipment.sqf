@@ -45,7 +45,7 @@ switch(_type) do
 		removeUniform player;
 		_selected_uniform = _uniform_array select _index; 
 		player addUniform (_selected_uniform);
-		[SVIS_INVENTORY select 3] call addToInventory;
+		[player, SVIS_INVENTORY select 3] call addToInventory;
 		// update gui
 		[_display, "SetUniform"] call setGUI;
 
@@ -60,7 +60,7 @@ switch(_type) do
 		removeVest player;
 		_selected_vest = _vest_array select _index; 
 		player addVest (_selected_vest);
-		[SVIS_INVENTORY select 5] call addToInventory;
+		[player, SVIS_INVENTORY select 5] call addToInventory;
 		// update gui
 		[_display, "SetVest"] call setGUI;
 
@@ -75,7 +75,7 @@ switch(_type) do
 		removeBackpack player;	//BUG player craps out backpacks if you switch too quickly
 		_selected_backpack = _backpack_array select _index; 
 		player addBackpack (_selected_backpack);
-		[SVIS_INVENTORY select 7] call addToInventory;
+		[player, SVIS_INVENTORY select 7] call addToInventory;
 		diag_log format["SVIS: switchEquipment, backpack %1", _selected_backpack];
 		
 		// update gui

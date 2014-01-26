@@ -6,10 +6,29 @@
   * TODO: put assigned items in a single array
   */
 
-  addToInventory = compile preprocessFileLineNumbers "InventorySystem\addToInventory.sqf";
+addToInventory = compile preprocessFileLineNumbers "InventorySystem\addToInventory.sqf";
 
-waitUntil {!(isNull player)};
-waitUntil {player==player};
+_entity = nil;
+_init = nil;
+
+// if call originated from AddAction
+if ((count _this) > 2) then {
+    _entity = _this select 1; // get caller
+    _init = false;
+} else {
+    _entity = _this select 0;
+    _init = if((count _this) > 1) then {_this select 1} else {false};
+};
+
+diag_log format["SVIS: loadInventory, this is %1, %2", _this, count _this];
+diag_log format["SVIS: loadInventory, _entity is %1", _entity];
+diag_log format["SVIS: loadInventory, init is %1", _init];
+
+if (!_init) then {
+    waitUntil {!(isNull player)};
+    waitUntil {player==player};
+};
+
 
 
 _headgear =		SVIS_INVENTORY select 0;
@@ -35,7 +54,7 @@ _radio					=	SVIS_INVENTORY select 19;
 _gps					=	SVIS_INVENTORY select 20;
 
 diag_log format["SVIS: loadInventory, %1", SVIS_INVENTORY];
-diag_log format["SVIS: loadInventory, %1", assignedItems player];
+diag_log format["SVIS: loadInventory, %assigned items: 1", assignedItems _entity];
 diag_log format["SVIS: loadInventory, are NVG in inventory? %1", _nvg];
 diag_log format["SVIS: loadInventory, is Rangefinder in inventory? %1", _range_finder];
 diag_log format["SVIS: loadInventory, is Binocular in inventory? %1", _binocular];
@@ -44,52 +63,52 @@ diag_log format["SVIS: loadInventory, is Binocular in inventory? %1", _binocular
 if( (count SVIS_INVENTORY) != 0) then
 {
 	// remove primary weapon and add the saved one
-	removeAllWeapons player;
-	removeHeadgear player;
-	removeGoggles player;	
-	removeUniform player;
-	removeVest player;
-	removeBackpack player;
+	removeAllWeapons _entity;
+	removeHeadgear _entity;
+	removeGoggles _entity;	
+	removeUniform _entity;
+	removeVest _entity;
+	removeBackpack _entity;
 		
-	player addHeadgear _headgear;	
-	player addGoggles _goggles; 
-	player addUniform _uniform;
-	player addVest _vest;
+	_entity addHeadgear _headgear;	
+	_entity addGoggles _goggles; 
+	_entity addUniform _uniform;
+	_entity addVest _vest;
     if(_backpack != "") then {
-        player addBackpack _backpack;	
+        _entity addBackpack _backpack;	
     };
     	
     {
         if(_x != "") then {
-            [player, _x, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added	
+            [_entity, _x, 1] call BIS_fnc_addWeapon;	//add weapon last, or mag won't be added	
         };
     } forEach [_primary_weapon, _secondary_weapon, _handgun];    
 	
 	if(_range_finder) then {
-		player removeWeapon "Binocular";
-		player addWeapon "Rangefinder";
+		_entity removeWeapon "Binocular";
+		_entity addWeapon "Rangefinder";
 	};
 	
 	if(_binocular) then {
-		player removeWeapon "Rangefinder";
-		player addWeapon "Binocular";
+		_entity removeWeapon "Rangefinder";
+		_entity addWeapon "Binocular";
 	};	
 		
 	if(_nvg) then {
-		player assignItem "NVGoggles";
+		_entity assignItem "NVGoggles";
 	} else {
-		switch(side player) do {
+		switch(side _entity) do {
 			case(west): {
-				player unassignItem "NVGoggles";	
-				player removeItem "NVGoggles";			
+				_entity unassignItem "NVGoggles";	
+				_entity removeItem "NVGoggles";			
 			};
 			case(east): {
-				player unassignItem "NVGoggles_OPFOR";	
-				player removeItem "NVGoggles_OPFOR";				
+				_entity unassignItem "NVGoggles_OPFOR";	
+				_entity removeItem "NVGoggles_OPFOR";				
 			};
 			case(independent): {
-				player unassignItem "NVGoggles_INDEP";	
-				player removeItem "NVGoggles_INDEP";					
+				_entity unassignItem "NVGoggles_INDEP";	
+				_entity removeItem "NVGoggles_INDEP";					
 			};
 			default {
 				diag_log "SVIS: loadInventory, faction not detected";
@@ -99,54 +118,54 @@ if( (count SVIS_INVENTORY) != 0) then
 	};
 		
 	if(_map) then {
-		player assignItem "ItemMap";	
+		_entity assignItem "ItemMap";	
 	} else {
-		player unassignItem "ItemMap";	
+		_entity unassignItem "ItemMap";	
 	};
 
 	if(_compass) then {
-		player assignItem "ItemCompass";	
+		_entity assignItem "ItemCompass";	
 	} else {
-		player unassignItem "ItemCompass";	
+		_entity unassignItem "ItemCompass";	
 	};	
 	
 	if(_watch) then {
-		player assignItem "ItemWatch";	
+		_entity assignItem "ItemWatch";	
 	} else {
-		player unassignItem "ItemWatch";	
+		_entity unassignItem "ItemWatch";	
 	};	
 	
 	if(_radio) then {
-		player assignItem "ItemRadio";	
+		_entity assignItem "ItemRadio";	
 	} else {
-		player unassignItem "ItemRadio";	
+		_entity unassignItem "ItemRadio";	
 	};		
 
 	if(_gps) then {
-		player assignItem "ItemGPS";	
+		_entity assignItem "ItemGPS";	
 	} else {
-		player unassignItem "ItemGPS";	
+		_entity unassignItem "ItemGPS";	
 	};			
 	
 	{
-		player removePrimaryWeaponItem _x;
-	} forEach (primaryWeaponItems player);
+		_entity removePrimaryWeaponItem _x;
+	} forEach (primaryWeaponItems _entity);
 	
 	{
-		player addPrimaryWeaponItem _x;
+		_entity addPrimaryWeaponItem _x;
 	} forEach _primary_items;
 	
 	{
-		player removeItem _x;			//TODO this is not working
-	} forEach (secondaryWeaponItems player);
+		_entity removeItem _x;			//TODO this is not working
+	} forEach (secondaryWeaponItems _entity);
 	
 	{
-		player addSecondaryWeaponItem _x;
+		_entity addSecondaryWeaponItem _x;
 	} forEach _secondary_items;	
 	
-	[player, _uniform_items] call addToInventory;
-	[player, _vest_items] call addToInventory;
-	[player, _backpack_items] call addToInventory;
+	[_entity, _uniform_items] call addToInventory;
+	[_entity, _vest_items] call addToInventory;
+	[_entity, _backpack_items] call addToInventory;
 
-	player selectWeapon _primary_weapon;
+	_entity selectWeapon _primary_weapon;
 };

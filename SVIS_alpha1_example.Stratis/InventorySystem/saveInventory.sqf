@@ -72,9 +72,58 @@ SVIS_INVENTORY set[18, _watch];
 SVIS_INVENTORY set[19, _radio];
 SVIS_INVENTORY set[20, _gps];
 
-diag_log SVIS_INVENTORY;
-_script = "addToInventory = compile preprocessFileLineNumbers ""InventorySystem\addToInventory.sqf""; ";
+diag_log format["SVIS: saveInventory: %1", SVIS_INVENTORY];
+_script = format["loadInventory = compile preprocessFileLineNumbers ""InventorySystem\loadInventory.sqf"";
+SVIS_INVENTORY = [];
+SVIS_INVENTORY set[0, ""%1""];
+SVIS_INVENTORY set[1,  ""%2""];
+SVIS_INVENTORY set[2, ""%3""];
+SVIS_INVENTORY set[3, %4];
+SVIS_INVENTORY set[4, ""%5""];
+SVIS_INVENTORY set[5, %6];
+SVIS_INVENTORY set[6, ""%7""];
+SVIS_INVENTORY set[7, %8];
+SVIS_INVENTORY set[8, ""%9""];
+SVIS_INVENTORY set[9, ""%10""];
+SVIS_INVENTORY set[10, ""%11""];
+SVIS_INVENTORY set[11, %12];
+SVIS_INVENTORY set[12, %13];
+SVIS_INVENTORY set[13, %14];
+SVIS_INVENTORY set[14, %15];
+SVIS_INVENTORY set[15, %16];
+SVIS_INVENTORY set[16, %17];
+SVIS_INVENTORY set[17, %18];
+SVIS_INVENTORY set[18, %19];
+SVIS_INVENTORY set[19, %20];
+SVIS_INVENTORY set[20, %21];
 
+[this, true] call loadInventory;
+",
+_headgear,
+_goggles,
+_uniform,
+_uniform_items,
+_vest,
+_vest_items,
+_backpack,
+_backpack_items,
+_primary_weapon,
+_secondary_weapon,
+_handgun,
+_primary_items,
+_secondary_items,
+_nvg,
+_range_finder,
+_binocular,
+_map,
+_compass,
+_watch,
+_radio,
+_gps
+];
+
+/*
+_script = "addToInventory = compile preprocessFileLineNumbers ""InventorySystem\addToInventory.sqf""; ";
 _script = _script + format["headgear_ = ""%1"";
 goggles_ = ""%2"";
 uniform_ = ""%3"";
@@ -225,6 +274,7 @@ _script = _script + "
 
 	this selectWeapon primary_weapon_;";
     
+*/
 
 diag_log _script;
 copyToClipboard _script;

@@ -26,8 +26,8 @@ class Mission
 	addOnsAuto[]=
 	{
 		"A3_Characters_F_BLUFOR",
-		"a3_characters_f_beta",
 		"A3_Characters_F_OPFOR",
+		"a3_characters_f_beta",
 		"A3_Characters_F_INDEP",
 		"A3_Weapons_F_Ammoboxes",
 		"a3_weapons_f_beta_ammoboxes",
@@ -61,7 +61,7 @@ class Mission
 			side="WEST";
 			class Vehicles
 			{
-				items=8;
+				items=2;
 				class Item0
 				{
 					position[]={1892.3356,5.5,5823.6143};
@@ -75,70 +75,14 @@ class Mission
 				};
 				class Item1
 				{
-					position[]={1885.0646,5.5,5823.9043};
-					id=1;
-					side="WEST";
-					vehicle="B_soldier_AR_F";
-					player="PLAY CDG";
-					rank="CORPORAL";
-					skill=0.33333331;
-				};
-				class Item2
-				{
 					position[]={1890.0646,5.5,5828.9043};
-					id=2;
+					id=1;
 					side="WEST";
 					vehicle="B_Soldier_SL_F";
 					player="PLAY CDG";
 					rank="SERGEANT";
 					skill=0.46666664;
-					init="addToInventory = compile preprocessFileLineNumbers ""InventorySystem\addToInventory.sqf""; headgear_ = ""H_Beret_ocamo""; goggles_ = ""G_Aviator""; uniform_ = ""U_B_HeliPilotCoveralls""; uniform_items_ = [""FirstAidKit"",""30Rnd_mas_556x45_Stanag"",""30Rnd_mas_556x45_Stanag"",""30Rnd_mas_556x45_Stanag""]; vest_ = ""V_PlateCarrierGL_rgr""; vest_items_ = [""16Rnd_9x21_Mag"",""16Rnd_9x21_Mag"",""MiniGrenade"",""MiniGrenade"",""1Rnd_HE_Grenade_shell"",""1Rnd_HE_Grenade_shell"",""1Rnd_HE_Grenade_shell"",""SmokeShell"",""SmokeShellGreen"",""SmokeShellBlue"",""SmokeShellOrange"",""Chemlight_green"",""Chemlight_green"",""1Rnd_Smoke_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""30Rnd_mas_556x45_Stanag"",""30Rnd_mas_556x45_Stanag""]; backpack_ = ""B_AssaultPack_dgtl""; backpack_items_ = []; primary_weapon_ = ""arifle_mas_m4_m203_a""; secondary_weapon_ = ""Stinger""; handgun_ = ""hgun_P07_F""; primary_items_ = ["""",""acc_pointer_IR"",""optic_mas_aim""]; secondary_items_ = ["""","""",""""]; nvg_ = true; range_finder_ = false; binocular_ = false; map_ = true; compass_ = true; watch_ = true; radio_ = true; gps_ = true;  removeAllWeapons this;  removeHeadgear this;  removeGoggles this;   removeUniform this;  removeVest this;  removeBackpack this;     this addHeadgear headgear_;   this addGoggles goggles_;    this addUniform uniform_;  this addVest vest_;     if(backpack_ != """") then {         this addBackpack backpack_;      };          {         if(_x != """") then {             [this, _x, 1] call BIS_fnc_addWeapon;          };     } forEach [primary_weapon_, secondary_weapon_, handgun_];        if(range_finder_) then {   this removeWeapon ""Binocular"";   this addWeapon ""Rangefinder"";  };    if(binocular_) then {   this removeWeapon ""Rangefinder"";   this addWeapon ""Binocular"";  };      if(nvg_) then {   this assignItem ""NVGoggles"";  } else {   switch(side this) do {    case(west): {     this unassignItem ""NVGoggles"";      this removeItem ""NVGoggles"";       };    case(east): {     this unassignItem ""NVGoggles_OPFOR"";      this removeItem ""NVGoggles_OPFOR"";        };    case(independent): {     this unassignItem ""NVGoggles_INDEP"";      this removeItem ""NVGoggles_INDEP"";         };    default {     diag_log ""SVIS: faction not detected"";    }      };  };     if(map_) then {   this assignItem ""ItemMap"";   } else {   this unassignItem ""ItemMap"";   };   if(compass_) then {   this assignItem ""ItemCompass"";   } else {   this unassignItem ""ItemCompass"";   };     if(watch_) then {   this assignItem ""ItemWatch"";   } else {   this unassignItem ""ItemWatch"";   };     if(radio_) then {   this assignItem ""ItemRadio"";   } else {   this unassignItem ""ItemRadio"";   };     if(gps_) then {   this assignItem ""ItemGPS"";   } else {   this unassignItem ""ItemGPS"";   };       {   this removePrimaryWeaponItem _x;  } forEach (primaryWeaponItems this);    {   this addPrimaryWeaponItem _x;  } forEach primary_items_;    {   this removeItem _x;     } forEach (secondaryWeaponItems this);    {   this addSecondaryWeaponItem _x;  } forEach secondary_items_;     [this, uniform_items_] call addToInventory;  [this, vest_items_] call addToInventory;  [this, backpack_items_] call addToInventory;   this selectWeapon primary_weapon_;";
-				};
-				class Item3
-				{
-					position[]={1885.0845,5.5,5818.0332};
-					id=3;
-					side="WEST";
-					vehicle="B_soldier_AR_F";
-					player="PLAY CDG";
-					skill=0.2;
-				};
-				class Item4
-				{
-					position[]={1880.0646,5.5,5818.9043};
-					id=4;
-					side="WEST";
-					vehicle="B_soldier_AAR_F";
-					player="PLAY CDG";
-					skill=0.2;
-				};
-				class Item5
-				{
-					position[]={1875.0646,5.5052395,5813.9043};
-					id=5;
-					side="WEST";
-					vehicle="B_medic_F";
-					player="PLAY CDG";
-					skill=0.2;
-				};
-				class Item6
-				{
-					position[]={1882.304,5.5059671,5813.6133};
-					id=6;
-					side="WEST";
-					vehicle="B_soldier_LAT_F";
-					player="PLAY CDG";
-					rank="CORPORAL";
-					skill=0.33333331;
-				};
-				class Item7
-				{
-					position[]={1887.4781,5.5068531,5813.2588};
-					id=7;
-					side="WEST";
-					vehicle="B_Soldier_A_F";
-					player="PLAY CDG";
-					skill=0.2;
+					init="loadInventory = compile preprocessFileLineNumbers ""InventorySystem\loadInventory.sqf""; SVIS_INVENTORY = []; SVIS_INVENTORY set[0, ""H_Beret_ocamo""]; SVIS_INVENTORY set[1,  ""G_Aviator""]; SVIS_INVENTORY set[2, ""U_BG_Guerilla3_1""]; SVIS_INVENTORY set[3, [""FirstAidKit"",""16Rnd_9x21_Mag"",""16Rnd_9x21_Mag"",""HandGrenade"",""B_IR_Grenade"",""SmokeShell"",""SmokeShellGreen"",""SmokeShellBlue""]]; SVIS_INVENTORY set[4, ""V_Chestrig_khk""]; SVIS_INVENTORY set[5, [""SmokeShellOrange"",""Chemlight_green"",""20Rnd_762x51_Mag"",""20Rnd_762x51_Mag"",""20Rnd_762x51_Mag"",""20Rnd_762x51_Mag"",""20Rnd_762x51_Mag"",""B_IR_Grenade"",""HandGrenade"",""Chemlight_green""]]; SVIS_INVENTORY set[6, ""B_AssaultPack_dgtl""]; SVIS_INVENTORY set[7, []]; SVIS_INVENTORY set[8, ""srifle_EBR_F""]; SVIS_INVENTORY set[9, """"]; SVIS_INVENTORY set[10, ""hgun_P07_F""]; SVIS_INVENTORY set[11, ["""","""",""""]]; SVIS_INVENTORY set[12, []]; SVIS_INVENTORY set[13, false]; SVIS_INVENTORY set[14, false]; SVIS_INVENTORY set[15, true]; SVIS_INVENTORY set[16, true]; SVIS_INVENTORY set[17, true]; SVIS_INVENTORY set[18, true]; SVIS_INVENTORY set[19, true]; SVIS_INVENTORY set[20, true];  [this, true] call loadInventory; ";
 				};
 			};
 		};
@@ -151,7 +95,7 @@ class Mission
 				class Item0
 				{
 					position[]={3018.7268,27.200298,6198.7246};
-					id=8;
+					id=2;
 					side="EAST";
 					vehicle="O_Soldier_SL_F";
 					player="PLAY CDG";
@@ -162,7 +106,7 @@ class Mission
 				class Item1
 				{
 					position[]={3015.1404,27.168612,6197.1045};
-					id=9;
+					id=3;
 					side="EAST";
 					vehicle="O_Soldier_TL_F";
 					player="PLAY CDG";
@@ -172,7 +116,7 @@ class Mission
 				class Item2
 				{
 					position[]={3013.7268,27.041677,6193.7246};
-					id=10;
+					id=4;
 					side="EAST";
 					vehicle="O_Soldier_AR_F";
 					player="PLAY CDG";
@@ -182,7 +126,7 @@ class Mission
 				class Item3
 				{
 					position[]={3020.1404,26.788107,6192.1045};
-					id=11;
+					id=5;
 					side="EAST";
 					vehicle="O_Soldier_AR_F";
 					player="PLAY CDG";
@@ -191,7 +135,7 @@ class Mission
 				class Item4
 				{
 					position[]={3022.7488,26.857008,6192.8354};
-					id=12;
+					id=6;
 					side="EAST";
 					vehicle="O_Soldier_AAR_F";
 					player="PLAY CDG";
@@ -200,7 +144,7 @@ class Mission
 				class Item5
 				{
 					position[]={3020.9382,27.062902,6196.1021};
-					id=13;
+					id=7;
 					side="EAST";
 					vehicle="O_Soldier_LAT_F";
 					player="PLAY CDG";
@@ -210,7 +154,7 @@ class Mission
 				class Item6
 				{
 					position[]={3016.698,26.896212,6192.5854};
-					id=14;
+					id=8;
 					side="EAST";
 					vehicle="O_medic_F";
 					player="PLAY CDG";
@@ -219,7 +163,7 @@ class Mission
 				class Item7
 				{
 					position[]={3025.9382,26.847012,6191.1021};
-					id=15;
+					id=9;
 					side="EAST";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
@@ -236,7 +180,7 @@ class Mission
 				class Item0
 				{
 					position[]={3265.6389,5.1959786,5799.4189};
-					id=16;
+					id=10;
 					side="GUER";
 					vehicle="I_Soldier_SL_F";
 					player="PLAY CDG";
@@ -247,7 +191,7 @@ class Mission
 				class Item1
 				{
 					position[]={3261.6265,5.1521554,5801.1138};
-					id=17;
+					id=11;
 					side="GUER";
 					vehicle="I_Soldier_TL_F";
 					player="PLAY CDG";
@@ -257,7 +201,7 @@ class Mission
 				class Item2
 				{
 					position[]={3271.196,5.1716466,5799.7227};
-					id=18;
+					id=12;
 					side="GUER";
 					vehicle="I_Soldier_AR_F";
 					player="PLAY CDG";
@@ -267,7 +211,7 @@ class Mission
 				class Item3
 				{
 					position[]={3259.9321,5.2873144,5796.4229};
-					id=19;
+					id=13;
 					side="GUER";
 					vehicle="I_Soldier_AR_F";
 					player="PLAY CDG";
@@ -276,7 +220,7 @@ class Mission
 				class Item4
 				{
 					position[]={3266.196,5.3232503,5794.7227};
-					id=20;
+					id=14;
 					side="GUER";
 					vehicle="I_Soldier_AAR_F";
 					player="PLAY CDG";
@@ -285,7 +229,7 @@ class Mission
 				class Item5
 				{
 					position[]={3268.7429,5.3533568,5793.019};
-					id=21;
+					id=15;
 					side="GUER";
 					vehicle="I_Soldier_LAT_F";
 					player="PLAY CDG";
@@ -295,7 +239,7 @@ class Mission
 				class Item6
 				{
 					position[]={3262.1052,5.3682022,5792.853};
-					id=22;
+					id=16;
 					side="GUER";
 					vehicle="I_medic_F";
 					player="PLAY CDG";
@@ -304,7 +248,7 @@ class Mission
 				class Item7
 				{
 					position[]={3272.5586,5.2928772,5794.6108};
-					id=23;
+					id=17;
 					side="GUER";
 					vehicle="I_Soldier_A_F";
 					player="PLAY CDG";
@@ -320,7 +264,7 @@ class Mission
 		{
 			position[]={1904.0166,5.5,5831.5903};
 			azimut=15;
-			id=24;
+			id=18;
 			side="EMPTY";
 			vehicle="Box_NATO_Wps_F";
 			leader=1;
@@ -331,7 +275,7 @@ class Mission
 		{
 			position[]={1902.022,5.5,5832.1538};
 			azimut=15;
-			id=25;
+			id=19;
 			side="EMPTY";
 			vehicle="Box_NATO_Wps_F";
 			leader=1;
@@ -342,7 +286,7 @@ class Mission
 		{
 			position[]={1906.1351,5.5,5830.999};
 			azimut=15;
-			id=26;
+			id=20;
 			side="EMPTY";
 			vehicle="Box_NATO_Wps_F";
 			leader=1;
@@ -353,7 +297,7 @@ class Mission
 		{
 			position[]={1898.9805,5.5,5833.0571};
 			azimut=15;
-			id=27;
+			id=21;
 			side="EMPTY";
 			vehicle="B_supplyCrate_F";
 			leader=1;
@@ -364,7 +308,7 @@ class Mission
 		{
 			position[]={3023.7556,27.441792,6200.2964};
 			azimut=15;
-			id=28;
+			id=22;
 			side="EMPTY";
 			vehicle="Box_East_Wps_F";
 			leader=1;
@@ -375,7 +319,7 @@ class Mission
 		{
 			position[]={3021.761,27.401928,6200.8599};
 			azimut=15;
-			id=29;
+			id=23;
 			side="EMPTY";
 			vehicle="Box_East_Wps_F";
 			leader=1;
@@ -386,7 +330,7 @@ class Mission
 		{
 			position[]={3025.874,27.679661,6199.7051};
 			azimut=15;
-			id=30;
+			id=24;
 			side="EMPTY";
 			vehicle="Box_East_Wps_F";
 			leader=1;
@@ -397,7 +341,7 @@ class Mission
 		{
 			position[]={3018.7195,27.362595,6201.7632};
 			azimut=15;
-			id=31;
+			id=25;
 			side="EMPTY";
 			vehicle="Box_East_Ammo_F";
 			leader=1;
@@ -408,7 +352,7 @@ class Mission
 		{
 			position[]={3271.0007,5.0727291,5803.9897};
 			azimut=15;
-			id=32;
+			id=26;
 			side="EMPTY";
 			vehicle="Box_IND_Wps_F";
 			leader=1;
@@ -419,7 +363,7 @@ class Mission
 		{
 			position[]={3269.0061,5.0705695,5804.5532};
 			azimut=15;
-			id=33;
+			id=27;
 			side="EMPTY";
 			vehicle="Box_IND_Wps_F";
 			leader=1;
@@ -430,7 +374,7 @@ class Mission
 		{
 			position[]={3273.1191,5.0721335,5803.3984};
 			azimut=15;
-			id=34;
+			id=28;
 			side="EMPTY";
 			vehicle="Box_IND_Wps_F";
 			leader=1;
@@ -441,7 +385,7 @@ class Mission
 		{
 			position[]={3265.9646,5.0617933,5805.4565};
 			azimut=15;
-			id=35;
+			id=29;
 			side="EMPTY";
 			vehicle="Box_IND_Ammo_F";
 			leader=1;

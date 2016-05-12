@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=81;
+		nextID=87;
 	};
 	class Camera
 	{
-		pos[]={4928.4893,35.78463,6150.5898};
-		dir[]={0.69145584,-0.68730611,0.22279227};
-		up[]={0.6542263,0.72631204,0.21079564};
-		aside[]={0.30670431,-3.3155084e-007,-0.95188308};
+		pos[]={4946.6577,46.644749,6100.7842};
+		dir[]={-0.65451825,-0.3928133,0.64611208};
+		up[]={-0.27961954,0.91956407,0.27603024};
+		aside[]={0.70258063,6.728078e-008,0.71172243};
 	};
 };
 binarizationWanted=0;
@@ -361,18 +361,18 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4873.0288,32.29808,6151.0635};
+				position[]={4873.0288,32.297752,6151.0635};
 				angles[]={0.049951322,4.7178168,6.2581921};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				init="clearMagazineCargo this; clearWeaponCargo this; clearBackpackCargo this";
+				init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this; clearBackpackCargoGlobal this;";
 			};
 			id=9;
 			type="isc_ia_HMMWV_M2_b";
-			atlOffset=-0.011671066;
+			atlOffset=-0.01199913;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -402,18 +402,18 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4892.7832,32.338036,6150.4453};
+				position[]={4892.7832,32.337578,6150.4453};
 				angles[]={0.027488936,4.717782,6.2806892};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				init="clearMagazineCargo this; clearWeaponCargo this; clearBackpackCargo this";
+				init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this; clearBackpackCargoGlobal this;";
 			};
 			id=12;
 			type="isc_ia_HMMWV_M2_b";
-			atlOffset=-0.001543045;
+			atlOffset=-0.0020008087;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -948,18 +948,17 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4883.1392,32.044136,6135.5889};
+				position[]={4883.1392,32.043976,6135.5889};
 				angles[]={6.2357121,4.7237334,0};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				init="clearMagazineCargo this; clearWeaponCargo this; clearBackpackCargo this";
+				init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this; clearBackpackCargoGlobal this;";
 			};
 			id=45;
 			type="isc_ia_BTR60_b";
-			atlOffset=0.00016021729;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1072,7 +1071,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="clearMagazineCargo this; clearWeaponCargo this; clearBackpackCargo this";
+				init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this; clearBackpackCargoGlobal this;";
 			};
 			id=58;
 			type="isc_ia_BMP1_b";
@@ -1106,18 +1105,18 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4847.6514,32.444733,6135.4307};
+				position[]={4847.6514,32.444763,6135.4312};
 				angles[]={6.2781935,4.7574711,0};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				init="clearMagazineCargo this; clearWeaponCargo this; clearBackpackCargo this";
+				init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this; clearBackpackCargoGlobal this;";
 			};
 			id=63;
 			type="isc_ia_T55_b";
-			atlOffset=0.080986023;
+			atlOffset=0.080997467;
 		};
 		class Item14
 		{
@@ -1478,7 +1477,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="0";
+							value="1";
 						};
 					};
 				};
@@ -1497,7 +1496,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="_new_vehicle = _this select 0; clearMagazineCargo _new_vehicle; clearWeaponCargo _new_vehicle; clearBackpackCargo _new_vehicle;";
+							value="_old_vehicle = _this select 1; _new_vehicle = _this select 0;  deleteVehicle _old_vehicle; clearMagazineCargoGlobal _new_vehicle; clearWeaponCargoGlobal _new_vehicle; clearBackpackCargoGlobal _new_vehicle;";
 						};
 					};
 				};
@@ -1611,7 +1610,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="2";
+							value="0";
 						};
 					};
 				};
@@ -1630,7 +1629,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="60";
+							value="30";
 						};
 					};
 				};

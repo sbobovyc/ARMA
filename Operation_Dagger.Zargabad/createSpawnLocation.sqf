@@ -20,7 +20,9 @@ if(_ownerSide == west) then {
     if(isNil _marker_name) then {
         _marker = createMarker [_marker_name, _position];
         [west, _marker_name] call BIS_fnc_addRespawnPosition;  
-        [_position, _box_name] call createVirtualAmmobox;     
+        if(isNil _box_name) then {
+            [_position, _box_name] call createVirtualAmmobox;
+        };
     }
 };
 if(_ownerSide == east) then {

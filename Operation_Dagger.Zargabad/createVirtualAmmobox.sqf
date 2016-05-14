@@ -3,10 +3,12 @@ if (isServer || isDedicated) then {
     _position = _this select 0;
     _box_name = _this select 1;
     diag_log format["$$$$$ position %1", _position];
+    diag_log format["$$$$$ name %1", _box_name];
     _ammobox = "CUP_VABox" createVehicle _position;    
     _ammobox allowDamage false; // do not allow box to be damaged
     _ammobox enableSimulation false; // do not allow box to be moved
     _ammobox setVehicleVarName _box_name;
+    publicVariable _box_name;
     
     ["AmmoboxInit", [_ammobox, true]] call BIS_fnc_arsenal;;
 

@@ -1,5 +1,5 @@
 // https://forums.bistudio.com/topic/188425-how-to-copy-virtual-inventory-from-a-vehicle-to-another/
-if (isServer || isDedicated) then {
+//if (isServer || isDedicated) then {
     _position = _this select 0;
     _box_name = _this select 1;
     diag_log format["$$$$$ position %1", _position];
@@ -43,4 +43,6 @@ if (isServer || isDedicated) then {
 
     [operation_dagger_arsenal, [_ammobox]] call fnc_copyVehicleArsenal;
     */
-};
+//};
+
+_ammobox addAction ["<t color=""#FE2E2E"">"+ "Save inventory", {[player, [missionNamespace, "inventory_var"]] call BIS_fnc_saveInventory}];

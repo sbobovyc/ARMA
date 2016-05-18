@@ -1,6 +1,7 @@
+#include "opdagger.hpp"
+
 createVirtualAmmobox = compileFinal preprocessFileLineNumbers "createVirtualAmmobox.sqf";
 createSpawnLocation = compileFinal preprocessFileLineNumbers "createSpawnLocation.sqf";
-//fnc_addSaveAction = compileFinal preprocessFileLineNumbers "fnc_addSaveAction.sqf";
 
 fnc_AddSaveAction = {
     diag_log "$$$$$$ Adding save action";
@@ -15,3 +16,5 @@ fnc_AddLoadAction = {
 };
 
 0 fadeRadio 0; //mute in-game radio commands
+
+diag_log LOG_STR + "init finished" 

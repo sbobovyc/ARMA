@@ -8,7 +8,7 @@ class EditorData
 	toggles=133;
 	class ItemIDProvider
 	{
-		nextID=1400;
+		nextID=1409;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=234;
+		nextID=279;
 	};
 	class Camera
 	{
-		pos[]={3351.1484,55.592216,7763.9102};
-		dir[]={0.31131446,-0.69997019,0.64274931};
-		up[]={0.30512372,0.71417022,0.62996775};
-		aside[]={0.89999098,-7.9162419e-009,-0.43590915};
+		pos[]={4132.9546,85.884079,3424.6152};
+		dir[]={0,-0.70710677,0.70710683};
+		up[]={0,0.70710677,0.70710671};
+		aside[]={0.99999994,0,0};
 	};
 };
 binarizationWanted=0;
@@ -2484,12 +2484,14 @@ class Mission
 					};
 					id=252;
 					type="isc_is_machinegunner_o";
+					atlOffset=5.7220459e-006;
 				};
 			};
 			class Attributes
 			{
 			};
 			id=251;
+			atlOffset=5.7220459e-006;
 		};
 		class Item41
 		{
@@ -2505,7 +2507,7 @@ class Mission
 			};
 			id=254;
 			type="CUP_TKBasicWeapons_EP1";
-			atlOffset=0.11738396;
+			atlOffset=0.11738968;
 		};
 		class Item42
 		{
@@ -6487,7 +6489,7 @@ class Mission
 					};
 					id=486;
 					type="isc_is_militaman_o";
-					atlOffset=2.2888184e-005;
+					atlOffset=2.6702881e-005;
 				};
 				class Item1
 				{
@@ -6504,14 +6506,14 @@ class Mission
 					};
 					id=487;
 					type="isc_is_rifleman_o";
-					atlOffset=0.00014877319;
+					atlOffset=0.00015258789;
 				};
 			};
 			class Attributes
 			{
 			};
 			id=485;
-			atlOffset=2.2888184e-005;
+			atlOffset=2.6702881e-005;
 		};
 		class Item110
 		{
@@ -6535,14 +6537,14 @@ class Mission
 					};
 					id=489;
 					type="isc_is_militaman_o";
-					atlOffset=4.196167e-005;
+					atlOffset=6.4849854e-005;
 				};
 			};
 			class Attributes
 			{
 			};
 			id=488;
-			atlOffset=4.196167e-005;
+			atlOffset=6.4849854e-005;
 		};
 		class Item111
 		{
@@ -6566,14 +6568,14 @@ class Mission
 					};
 					id=493;
 					type="isc_is_militaman_o";
-					atlOffset=3.7799454;
+					atlOffset=3.7799149;
 				};
 			};
 			class Attributes
 			{
 			};
 			id=492;
-			atlOffset=3.7799454;
+			atlOffset=3.7799149;
 		};
 		class Item112
 		{
@@ -8850,7 +8852,8 @@ class Mission
 				position[]={3361.2,35.040623,7791.4312};
 				angles[]={6.2631841,0,6.2681928};
 			};
-			init="diag_log ""$$$$$$$$ Changing faction for BLUFOR"";this setVariable[""Faction"", ""ISC_IA_B"", true]";
+			name="blufor_ai_spawn";
+			init="this setVariable[""Faction"", ""ISC_IA_B""]; ";
 			id=795;
 			type="ModuleSpawnAI_F";
 			class CustomAttributes
@@ -9094,7 +9097,7 @@ class Mission
 				position[]={3360.3831,34.99427,7787.2891};
 				angles[]={6.2731848,0,6.2606878};
 			};
-			init="this setVariable[""Faction"", ""ISC_IA_B""]";
+			init="this setVariable[""Faction"", ""ISC_IA_B""]; ";
 			id=796;
 			type="ModuleSpawnAIPoint_F";
 			class CustomAttributes
@@ -11954,8 +11957,8 @@ class Mission
 				position[]={3942.3279,11.036195,2769.019};
 				angles[]={6.2656798,0,6.2781935};
 			};
-			name="ISIS_Spawn_AI";
-			init="this setVariable[""Faction"", ""ISC_IS_O""]";
+			name="opfor_ai_spawn";
+			init="this setVariable[""Faction"", ""ISC_IS_O""];";
 			id=1226;
 			type="ModuleSpawnAI_F";
 			class CustomAttributes
@@ -12127,7 +12130,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=2;
+							value=1;
 						};
 					};
 				};
@@ -14999,7 +15002,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={3361.5,34.485188,7758.5498};
+						position[]={3357.3577,34.697823,7768.4229};
 					};
 					side="Civilian";
 					flags=7;
@@ -15007,22 +15010,25 @@ class Mission
 					{
 						isPlayable=1;
 					};
-					id=1398;
+					id=1407;
 					type="C_man_p_beggar_F";
+					atlOffset=0.0024986267;
 				};
 			};
 			class Attributes
 			{
 			};
-			id=1397;
+			id=1406;
+			atlOffset=0.0024986267;
 		};
 		class Item289
 		{
 			dataType="Marker";
-			position[]={3360.7979,34.569504,7763.1748};
+			position[]={3356.6555,34.796513,7773.0479};
 			name="respawn_civilian";
 			type="Empty";
-			id=1399;
+			id=1408;
+			atlOffset=0.0037498474;
 		};
 	};
 	class Connections

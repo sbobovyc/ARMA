@@ -11,6 +11,8 @@ createSpawnLocation = compileFinal preprocessFileLineNumbers "createSpawnLocatio
 //EastGroupFilter = [east] call groupFilter;
 //opfor_ai_spawn setVariable ["BlacklistedGroups",EastGroupFilter,true];
 
+AMMO_BOX_ARRAY = [];
+
 if(isDedicated) then {
     blufor_ai_spawn setVariable["Faction", "ISC_IA_B", true];
     opfor_ai_spawn setVariable["Faction", "ISC_IS_O"];

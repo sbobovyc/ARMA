@@ -16,16 +16,16 @@ if (isServer || isDedicated) then {
     ["AmmoboxInit", [_ammobox, true]] call BIS_fnc_arsenal;;
 
     [_ammobox,(_ammobox call BIS_fnc_getVirtualWeaponcargo),true] call BIS_fnc_removeVirtualWeaponCargo;
-    [_ammobox, operation_dagger_arsenal call BIS_fnc_getVirtualWeaponcargo] call BIS_fnc_addVirtualWeaponCargo;
+    [_ammobox, operation_dagger_arsenal call BIS_fnc_getVirtualWeaponcargo, (true)] call BIS_fnc_addVirtualWeaponCargo;
 
     [_ammobox,(_ammobox call BIS_fnc_getVirtualMagazineCargo),true] call BIS_fnc_removeVirtualMagazineCargo;
-    [_ammobox, operation_dagger_arsenal call BIS_fnc_getVirtualMagazineCargo] call BIS_fnc_addVirtualMagazineCargo;
+    [_ammobox, operation_dagger_arsenal call BIS_fnc_getVirtualMagazineCargo, (true)] call BIS_fnc_addVirtualMagazineCargo;
 
     [_ammobox,(_ammobox call BIS_fnc_getVirtualBackpackCargo),true] call BIS_fnc_removeVirtualBackpackCargo;
-    [_ammobox, operation_dagger_arsenal call BIS_fnc_getVirtualBackpackCargo] call BIS_fnc_addVirtualBackpackCargo;
+    [_ammobox, operation_dagger_arsenal call BIS_fnc_getVirtualBackpackCargo, (true)] call BIS_fnc_addVirtualBackpackCargo;
 
     [_ammobox,(_ammobox call BIS_fnc_getVirtualItemCargo),true] call BIS_fnc_removeVirtualItemCargo;
-    [_ammobox, operation_dagger_arsenal call BIS_fnc_getVirtualItemCargo] call BIS_fnc_addVirtualItemCargo;
+    [_ammobox, operation_dagger_arsenal call BIS_fnc_getVirtualItemCargo, (true)] call BIS_fnc_addVirtualItemCargo;
 
     /*
     fnc_copyVehicleArsenal = {
@@ -49,4 +49,6 @@ if (isServer || isDedicated) then {
 
     [[_ammobox], "fnc_AddSaveAction", true, true] call BIS_fnc_MP;
     [[_ammobox], "fnc_AddLoadAction", true, true] call BIS_fnc_MP;
+    
+    diag_log format[LOG_STR + "Items in spawned box: %1", _ammobox call BIS_fnc_getVirtualItemCargo];
 };    

@@ -32,8 +32,27 @@ fnc_AddSaveAction = {
 
 fnc_AddLoadAction = {    
     diag_log LOG_STR + "Adding load action";
-    _ammobox = (_this select 0);
+    _ammobox = (_this select 0);    
     _ammobox addAction ["<t color=""#CCFF66"">"+ "Load inventory", {[player, [missionNamespace, "inventory_var"]] call BIS_fnc_loadInventory}];
+};
+
+fnc_FixVehicleDecals = {
+    _vehicle = (_this select 0);
+    if((typeOf _vehicle) == "rhs_btr60_msv") then {
+        _vehicle setObjectTextureGlobal [4, ""];
+        _vehicle setObjectTextureGlobal [9, ""];
+        _vehicle setObjectTextureGlobal [10, ""];
+        _vehicle setObjectTextureGlobal [11, ""];
+        _vehicle setObjectTextureGlobal [12, ""];
+    };
+    if((typeOf _vehicle) == "rhs_bmp1_vv") then {
+        _vehicle setObjectTextureGlobal [6, ""];
+        _vehicle setObjectTextureGlobal [7, ""];
+        _vehicle setObjectTextureGlobal [8, ""];
+        _vehicle setObjectTextureGlobal [9, ""];
+        _vehicle setObjectTextureGlobal [12, ""];
+        _vehicle setObjectTextureGlobal [13, ""];
+    };
 };
 
 0 fadeRadio 0; //mute in-game radio commands

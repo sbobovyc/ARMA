@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=492;
+		nextID=503;
 	};
 	class Camera
 	{
-		pos[]={4895.1963,35.062805,6143.6191};
+		pos[]={4896.2876,34.347885,6146.3892};
 		dir[]={-0.37771961,-0.28662571,-0.88054907};
 		up[]={-0.11302492,0.95800376,-0.26349089};
 		aside[]={-0.91910684,8.1563485e-007,0.3942599};
@@ -819,7 +819,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4866,31.711346,6128.9595};
+				position[]={4865.9995,31.711832,6128.96};
 				angles[]={6.2456956,4.7574711,0.012496558};
 			};
 			side="Empty";
@@ -830,7 +830,6 @@ class Mission
 			};
 			id=58;
 			type="isc_ia_BMP1_b";
-			atlOffset=-0.00047492981;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1282,7 +1281,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={4930.5,29.747499,6148.5};
-				angles[]={0.039979152,0,6.2581892};
+				angles[]={0.039985489,0,6.2581921};
 			};
 			id=118;
 			type="ModuleRespawnPosition_F";
@@ -1433,7 +1432,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="_old_vehicle = _this select 1; _new_vehicle = _this select 0;  deleteVehicle _old_vehicle; clearMagazineCargoGlobal _new_vehicle; clearWeaponCargoGlobal _new_vehicle; clearBackpackCargoGlobal _new_vehicle;";
+							value="_old_vehicle = _this select 1; _new_vehicle = _this select 0;  deleteVehicle _old_vehicle; clearMagazineCargoGlobal _new_vehicle; clearWeaponCargoGlobal _new_vehicle; clearBackpackCargoGlobal _new_vehicle;  if (not isNil ""fnc_FixVehicleDecals"") then {[_new_vehicle] call fnc_FixVehicleDecals;};";
 						};
 					};
 				};
@@ -1934,6 +1933,7 @@ class Mission
 					};
 					id=479;
 					type="isc_is_rifleman_o";
+					atlOffset=7.6293945e-006;
 				};
 				class Item2
 				{
@@ -5271,12 +5271,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={4948.4805,29.460482,6112.8525};
-				angles[]={6.2581916,0,6.2606897};
+				position[]={4948.48,29.460527,6112.853};
+				angles[]={6.2581921,0,6.2606878};
 			};
 			id=411;
 			type="SupportProvider_Artillery";
-			atlOffset=-2.0980835e-005;
 		};
 		class Item91
 		{
@@ -5892,6 +5891,7 @@ class Mission
 			};
 			id=478;
 			type="isc_is_GMG_o";
+			atlOffset=7.6293945e-006;
 		};
 		class Item102
 		{
@@ -5945,7 +5945,7 @@ class Mission
 					};
 					id=486;
 					type="isc_is_militaman_o";
-					atlOffset=2.6702881e-005;
+					atlOffset=7.6293945e-005;
 				};
 				class Item1
 				{
@@ -5962,14 +5962,14 @@ class Mission
 					};
 					id=487;
 					type="isc_is_rifleman_o";
-					atlOffset=0.00015258789;
+					atlOffset=0.00020217896;
 				};
 			};
 			class Attributes
 			{
 			};
 			id=485;
-			atlOffset=2.6702881e-005;
+			atlOffset=7.6293945e-005;
 		};
 		class Item104
 		{
@@ -13994,6 +13994,7 @@ class Mission
 			class Attributes
 			{
 				init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this; clearBackpackCargoGlobal this;";
+				name="bmp";
 				textures="rhs_sand";
 			};
 			id=1530;
@@ -14456,7 +14457,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this; clearBackpackCargoGlobal this;this setVariable [""BIS_enableRandomization"", false];";
+				init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this; clearBackpackCargoGlobal this;";
 			};
 			id=1579;
 			type="rhs_btr60_msv";

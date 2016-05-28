@@ -5,7 +5,7 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=5;
+	toggles=133;
 	class ItemIDProvider
 	{
 		nextID=1582;
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=503;
+		nextID=514;
 	};
 	class Camera
 	{
-		pos[]={4896.2876,34.347885,6146.3892};
-		dir[]={-0.37771961,-0.28662571,-0.88054907};
-		up[]={-0.11302492,0.95800376,-0.26349089};
-		aside[]={-0.91910684,8.1563485e-007,0.3942599};
+		pos[]={4933.9658,34.347885,6144.6401};
+		dir[]={0.84909368,-0.52629322,0.047492951};
+		up[]={0.52551717,0.8502624,0.029395845};
+		aside[]={0.055853076,7.7628283e-007,-0.99854398};
 	};
 };
 binarizationWanted=0;
@@ -239,19 +239,20 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={4942.0044,29.908178,6144.0259};
-						angles[]={0,5.1846094,0};
+						position[]={4942.0039,29.90823,6144.0259};
+						angles[]={0,5.1846051,0};
 					};
 					side="West";
 					flags=7;
 					class Attributes
 					{
 						rank="SERGEANT";
+						init="iraq_support synchronizeObjectsAdd [this];";
 						isPlayer=1;
 					};
 					id=1;
 					type="isc_ia_officer_b";
-					atlOffset=0.041946411;
+					atlOffset=0.042001724;
 				};
 				class Item1
 				{
@@ -352,7 +353,7 @@ class Mission
 			{
 			};
 			id=0;
-			atlOffset=0.041946411;
+			atlOffset=0.042001724;
 		};
 		class Item1
 		{
@@ -1615,6 +1616,7 @@ class Mission
 				position[]={4942.9858,29.560038,6117.6738};
 				angles[]={6.2681928,0,0.0049916417};
 			};
+			name="iraq_support";
 			id=129;
 			type="SupportRequester";
 			atlOffset=1.9073486e-006;
@@ -1933,7 +1935,6 @@ class Mission
 					};
 					id=479;
 					type="isc_is_rifleman_o";
-					atlOffset=7.6293945e-006;
 				};
 				class Item2
 				{
@@ -5891,7 +5892,6 @@ class Mission
 			};
 			id=478;
 			type="isc_is_GMG_o";
-			atlOffset=7.6293945e-006;
 		};
 		class Item102
 		{
@@ -5945,7 +5945,7 @@ class Mission
 					};
 					id=486;
 					type="isc_is_militaman_o";
-					atlOffset=7.6293945e-005;
+					atlOffset=2.6702881e-005;
 				};
 				class Item1
 				{
@@ -5962,14 +5962,14 @@ class Mission
 					};
 					id=487;
 					type="isc_is_rifleman_o";
-					atlOffset=0.00020217896;
+					atlOffset=0.00015258789;
 				};
 			};
 			class Attributes
 			{
 			};
 			id=485;
-			atlOffset=7.6293945e-005;
+			atlOffset=2.6702881e-005;
 		};
 		class Item104
 		{

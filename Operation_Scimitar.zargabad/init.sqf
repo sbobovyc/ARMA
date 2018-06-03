@@ -57,7 +57,7 @@ _items = [
 ];
 [bluforVirtualArsenal,_items,true] call BIS_fnc_addVirtualItemCargo;
 
-_magazines = ["CUP_1Rnd_HE_GP25_M", "CUP_PG7V_M", "CUP_HandGrenade_RGD5", "CUP_PipeBomb_M"];
+_magazines = ["CUP_1Rnd_HE_GP25_M", "CUP_PG7V_M", "CUP_HandGrenade_RGD5", "CUP_PipeBomb_M", "CUP_AT13_M"];
 [bluforVirtualArsenal,_magazines,true] call BIS_fnc_addVirtualMagazineCargo;
 
 

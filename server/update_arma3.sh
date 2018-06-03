@@ -26,6 +26,7 @@ download_mod $RHSAFRF_ID
 download_mod $RHSGREF_ID
 download_mod $CBA3_ID
 download_mod $CUP_WEAPONS_ID
+download_mod $CUP_VEHICLES_ID
 download_mod $CUP_UNITS_ID
 download_mod $CUP_TERRAINS_CORE_ID
 download_mod $CUP_TERRAINS_MAPS_ID
@@ -36,6 +37,7 @@ ln -s -T $WORKSHOP_DIR/$ARMA_ID/$RHSAFRF_ID $INSTALL_DIR/@rhsafrf
 ln -s -T $WORKSHOP_DIR/$ARMA_ID/$RHSGREF_ID $INSTALL_DIR/@rhsgref
 ln -s -T $WORKSHOP_DIR/$ARMA_ID/$CBA3_ID $INSTALL_DIR/@cba_a3
 ln -s -T $WORKSHOP_DIR/$ARMA_ID/$CUP_WEAPONS_ID $INSTALL_DIR/@cup_weapons
+ln -s -T $WORKSHOP_DIR/$ARMA_ID/$CUP_VEHICLES_ID $INSTALL_DIR/@cup_vehicles
 ln -s -T $WORKSHOP_DIR/$ARMA_ID/$CUP_UNITS_ID $INSTALL_DIR/@cup_units
 ln -s -T $WORKSHOP_DIR/$ARMA_ID/$CUP_TERRAINS_CORE_ID $INSTALL_DIR/@cup_terrains
 ln -s -T $WORKSHOP_DIR/$ARMA_ID/$CUP_TERRAINS_MAPS_ID $INSTALL_DIR/@cup_maps

@@ -43,4 +43,4 @@ ln -s -T $WORKSHOP_DIR/$ARMA_ID/$CUP_TERRAINS_CORE_ID $INSTALL_DIR/@cup_terrains
 ln -s -T $WORKSHOP_DIR/$ARMA_ID/$CUP_TERRAINS_MAPS_ID $INSTALL_DIR/@cup_maps
 ln -s -T $WORKSHOP_DIR/$ARMA_ID/$COMMUNITY_FACTIONS_PROJECT_ID $INSTALL_DIR/@cfp
 
-find $WORKSHOP_DIR -name *.bikey -exec cp {} $INSTAL_DIR/keys \;
+find $WORKSHOP_DIR -name *.bikey -exec cp {} $INSTALL_DIR/keys \;

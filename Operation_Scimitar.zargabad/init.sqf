@@ -44,7 +44,6 @@ _items = [
 "ItemGPS",
 "ToolKit",
 "MineDetector",
-"CUP_PipeBomb_M",
 "SP_ChestRig1_Green",
 "V_TacVest_camo",
 "CUP_optic_PGO7V",
@@ -58,7 +57,7 @@ _items = [
 ];
 [bluforVirtualArsenal,_items,true] call BIS_fnc_addVirtualItemCargo;
 
-_magazines = ["CUP_1Rnd_HE_GP25_M", "CUP_PG7V_M", "CUP_HandGrenade_RGD5"];
+_magazines = ["CUP_1Rnd_HE_GP25_M", "CUP_PG7V_M", "CUP_HandGrenade_RGD5", "CUP_PipeBomb_M"];
 [bluforVirtualArsenal,_magazines,true] call BIS_fnc_addVirtualMagazineCargo;
 
 

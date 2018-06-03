@@ -63,5 +63,5 @@ _magazines = ["CUP_1Rnd_HE_GP25_M", "CUP_PG7V_M", "CUP_HandGrenade_RGD5", "CUP_P
 
 0 fadeRadio 0; //mute in-game radio commands
 
-diag_log LOG_STR + "init finished";
+diag_log format[LOG_STR + "init finished"];
 

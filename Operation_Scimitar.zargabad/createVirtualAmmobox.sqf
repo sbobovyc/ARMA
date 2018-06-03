@@ -2,13 +2,13 @@
 // https://forums.bistudio.com/topic/188425-how-to-copy-virtual-inventory-from-a-vehicle-to-another/
 
 fnc_AddSaveAction = {
-    diag_log LOG_STR + "Adding save action";
+    diag_log format[LOG_STR + "Adding save action"];
     _ammobox = (_this select 0);
     _ammobox addAction ["<t color=""#FE2E2E"">"+ "Save inventory", {[player, [missionNamespace, "inventory_var"]] call BIS_fnc_saveInventory}];
 };
 
 fnc_AddLoadAction = {
-    diag_log LOG_STR + "Adding load action";
+    diag_log format[LOG_STR + "Adding load action"];
     _ammobox = (_this select 0);
     _ammobox addAction ["<t color=""#CCFF66"">"+ "Load inventory", {[player, [missionNamespace, "inventory_var"]] call BIS_fnc_loadInventory}];
 };
@@ -59,8 +59,11 @@ if (isServer || isDedicated) then {
     [bluforVirtualArsenal, [_ammobox]] call fnc_copyVehicleArsenal;
     */
 
-    [[_ammobox], "fnc_AddSaveAction", true, true] call BIS_fnc_MP;
-    [[_ammobox], "fnc_AddLoadAction", true, true] call BIS_fnc_MP;
+    // https://community.bistudio.com/wiki/remoteExec
+    //TODO this does not work on dedicated server
+    [_ammobox] remoteExec ["fnc_AddSaveAction", 0, true];
+    [_ammobox] remoteExec ["fnc_AddLoadAction", 0, true];
+
 
     diag_log format[LOG_STR + "Items in spawned box: %1", _ammobox call BIS_fnc_getVirtualItemCargo];
 };

@@ -1,4 +1,4 @@
-USER=$1
+STEAM_USER=$1
 PASS=$2
 ARMA_ID=107410
 ARMA_SERVER_ID=233780
@@ -12,15 +12,15 @@ CUP_VEHICLES_ID=541888371
 CUP_TERRAINS_CORE_ID=583496184
 CUP_TERRAINS_MAPS_ID=583544987
 COMMUNITY_FACTIONS_PROJECT_ID=1369691841
-INSTALL_DIR=/home/$USER/Arma3
+INSTALL_DIR=/home/$STEAM_USER/Arma3
 WORKSHOP_DIR=$INSTALL_DIR/steamapps/workshop/content
 
 download_mod() {
 	MODID=$1
-	steamcmd +login $USER $PASS +force_install_dir $INSTALL_DIR +workshop_download_item $ARMA_ID $MODID validate +quit
+	steamcmd +login $STEAM_USER $PASS +force_install_dir $INSTALL_DIR +workshop_download_item $ARMA_ID $MODID validate +quit
 }
 
-steamcmd +login $USER $PASS +force_install_dir $INSTALL_DIR +app_update $ARMA_SERVER_ID +quit
+steamcmd +login $STEAM_USER $PASS +force_install_dir $INSTALL_DIR +app_update $ARMA_SERVER_ID +quit
 download_mod $RHSUSAF_ID
 download_mod $RHSAFRF_ID
 download_mod $RHSGREF_ID

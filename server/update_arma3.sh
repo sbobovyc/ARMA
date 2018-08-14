@@ -12,7 +12,7 @@ CUP_VEHICLES_ID=541888371
 CUP_TERRAINS_CORE_ID=583496184
 CUP_TERRAINS_MAPS_ID=583544987
 COMMUNITY_FACTIONS_PROJECT_ID=1369691841
-INSTALL_DIR=/home/$STEAM_USER/Arma3
+INSTALL_DIR=/home/$USER/Arma3
 WORKSHOP_DIR=$INSTALL_DIR/steamapps/workshop/content
 
 download_mod() {
@@ -44,3 +44,5 @@ ln -s -T $WORKSHOP_DIR/$ARMA_ID/$CUP_TERRAINS_MAPS_ID $INSTALL_DIR/@cup_maps
 ln -s -T $WORKSHOP_DIR/$ARMA_ID/$COMMUNITY_FACTIONS_PROJECT_ID $INSTALL_DIR/@cfp
 
 find $WORKSHOP_DIR -name *.bikey -exec cp {} $INSTALL_DIR/keys \;
+
+mkdir -p ~/".local/share/Arma 3" && mkdir -p ~/".local/share/Arma 3 - Other Profiles"

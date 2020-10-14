@@ -22,7 +22,7 @@ class DifficultyPresets
 			staminaBar=0;
 			weaponCrosshair=0;
 			visionAid=0;
-			thirdPersonView=1;
+			thirdPersonView=2;
 			cameraShake=1;
 			scoreTable=1;
 			deathMessages=1;
